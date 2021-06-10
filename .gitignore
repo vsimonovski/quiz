@@ -1,0 +1,6 @@
+04-front-end/node_modules/
+04-front-end/build/
+04-front-end/.DS_Store
+04-front-end/npm-debug.log*
+04-front-end/yarn-debug.log*
+04-front-end/yarn-error.log*
