@@ -1,5 +1,6 @@
 import * as mysql2 from "mysql2/promise";
 import QuestionModel from "./model";
+import IErrorResponse from "../../common/IErrorResponse.interface";
 
 class QuestionService {
   private db: mysql2.Connection;
@@ -18,19 +19,25 @@ class QuestionService {
     return item;
   }
 
-  public async getAll(): Promise<QuestionModel[]> {
-    const questionList: QuestionModel[] = [];
+  public async getAll(): Promise<QuestionModel[] | IErrorResponse> {
+    try {
+      const questionList: QuestionModel[] = [];
+      const sql: string = "SELECT * FROM question;";
+      const [rows] = await this.db.execute(sql);
 
-    const sql: string = "SELECT * FROM question;";
-    const [rows, columns] = await this.db.execute(sql);
-
-    if (Array.isArray(rows)) {
-      for (const row of rows) {
-        questionList.push(await this.adaptModel(row));
+      if (Array.isArray(rows)) {
+        for (const row of rows) {
+          questionList.push(await this.adaptModel(row));
+        }
       }
-    }
 
-    return questionList;
+      return questionList;
+    } catch (e) {
+      return {
+        errorCode: e?.errno,
+        errorMessage: e?.sqlMessage,
+      };
+    }
   }
 }
 

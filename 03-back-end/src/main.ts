@@ -1,5 +1,5 @@
 import * as express from "express";
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import * as cors from "cors";
 import Config from "./config/dev";
 import * as mysql2 from "mysql2/promise";
@@ -31,6 +31,10 @@ async function main() {
 
   application.use((req: Request, res: Response) => {
     res.sendStatus(404);
+  });
+
+  application.use((err: any, req: Request, res: Response) => {
+    res.status(err.status).send(err.type);
   });
 
   application.listen(Config.server.port);

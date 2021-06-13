@@ -1,6 +1,5 @@
 import QuestionService from "./service";
-import {Request, Response, NextFunction} from "express";
-
+import { Request, Response, NextFunction } from "express";
 
 class QuestionController {
   private questionService: QuestionService;
@@ -9,10 +8,15 @@ class QuestionController {
     this.questionService = questionService;
   }
 
-  async getAll(req: Request, res: Response, next: NextFunction) {
+  async getAll(req: Request, res: Response) {
     const questions = await this.questionService.getAll();
 
-    res.send(questions);
+    if (questions instanceof Array) {
+      res.send(questions);
+      return;
+    }
+
+    res.status(500).send(questions);
   }
 }
 
