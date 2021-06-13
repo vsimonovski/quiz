@@ -2,9 +2,10 @@ import * as express from "express";
 import IApplicationResources from "../../common/IApplicationResources.interface";
 import QuestionService from "./service";
 import QuestionController from "./controller";
+import IRouter from "../../common/IRouter.interface";
 
-export default class QuestionRouter {
-  public static setUpRoutes(
+export default class QuestionRouter implements IRouter {
+  public setUpRoutes(
     application: express.Application,
     resources: IApplicationResources
   ) {
