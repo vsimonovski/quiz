@@ -2,6 +2,7 @@ import QuestionService from "./service";
 import { Request, Response } from "express";
 import QuestionModel from "./model";
 import IErrorResponse from "../../common/IErrorResponse.interface";
+import { addQuestionValidator, IAddQuestion } from "./dto/AddQuestion";
 
 class QuestionController {
   private questionService: QuestionService;
@@ -46,6 +47,19 @@ class QuestionController {
     }
 
     res.status(500).send(data);
+  }
+
+  async add(req: Request, res: Response) {
+    const data: IAddQuestion = req.body;
+    if (!addQuestionValidator(data)) {
+      res.status(400).send(addQuestionValidator.errors);
+      return;
+    }
+
+    const result: QuestionModel | IErrorResponse =
+      await this.questionService.add(data);
+
+    res.send(result);
   }
 }
 

@@ -25,5 +25,10 @@ export default class QuestionRouter implements IRouter {
       "/question/:id",
       questionController.getById.bind(questionController)
     );
+
+    application.post(
+      "/question",
+      questionController.add.bind(questionController)
+    );
   }
 }
