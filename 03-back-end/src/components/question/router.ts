@@ -14,5 +14,10 @@ export default class QuestionRouter {
     const questionController: QuestionController = new QuestionController(
       questionService
     );
+
+    application.get(
+      "/question",
+      questionController.getAll.bind(questionController)
+    );
   }
 }

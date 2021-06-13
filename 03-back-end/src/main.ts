@@ -1,4 +1,5 @@
 import * as express from "express";
+import { Request, Response, NextFunction } from "express";
 import * as cors from "cors";
 import Config from "./config/dev";
 import * as mysql2 from "mysql2/promise";
@@ -27,7 +28,7 @@ async function main() {
 
   QuestionRouter.setUpRoutes(application, resources);
 
-  application.use((req, res) => {
+  application.use((req: Request, res: Response) => {
     res.sendStatus(404);
   });
 
