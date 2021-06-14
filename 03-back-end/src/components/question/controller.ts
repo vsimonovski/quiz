@@ -2,7 +2,7 @@ import QuestionService from "./service";
 import { Request, Response } from "express";
 import QuestionModel from "./model";
 import IErrorResponse from "../../common/IErrorResponse.interface";
-import { addQuestionValidator, IAddQuestion } from "./dto/AddQuestion";
+import { questionValidator, IQuestion } from "./dto/Question";
 
 class QuestionController {
   private questionService: QuestionService;
@@ -23,8 +23,7 @@ class QuestionController {
   }
 
   async getById(req: Request, res: Response) {
-    const id: string = req.params.id;
-    const questionId: number = +id;
+    const questionId: number = +req.params.id;
 
     if (questionId <= 0) {
       res.sendStatus(400);
@@ -33,8 +32,6 @@ class QuestionController {
 
     const data: QuestionModel | IErrorResponse =
       await this.questionService.getById(questionId);
-
-    console.log(data);
 
     if (!(data instanceof QuestionModel)) {
       res.status(404).send(data);
@@ -50,9 +47,9 @@ class QuestionController {
   }
 
   async add(req: Request, res: Response) {
-    const data: IAddQuestion = req.body;
-    if (!addQuestionValidator(data)) {
-      res.status(400).send(addQuestionValidator.errors);
+    const data: IQuestion = req.body;
+    if (!questionValidator(data)) {
+      res.status(400).send(questionValidator.errors);
       return;
     }
 
@@ -60,6 +57,30 @@ class QuestionController {
       await this.questionService.add(data);
 
     res.send(result);
+  }
+
+  async edit(req: Request, res: Response) {
+    const questionId: number = +req.params.id;
+    const data: IQuestion = req.body;
+
+    if (questionId <= 0 || isNaN(questionId)) {
+      res.sendStatus(400);
+      return;
+    }
+
+    if (!questionValidator(data)) {
+      res.status(400).send(questionValidator.errors);
+      return;
+    }
+
+    const result: QuestionModel | IErrorResponse =
+      await this.questionService.edit(questionId, data);
+
+    if (result instanceof QuestionModel) {
+      res.send(result);
+      return;
+    }
+    res.status(404).send(result);
   }
 }
 

@@ -1,6 +1,6 @@
 import Ajv from "ajv";
 
-interface IAddQuestion {
+interface IQuestion {
   question: string;
   categoryId: number;
 }
@@ -15,8 +15,7 @@ const commonOptions = {
   },
 };
 
-// TODO: Enhance validator
-const addQuestionValidator = ajv.compile({
+const questionValidator = ajv.compile({
   type: "object",
   allOf: [
     {
@@ -78,4 +77,4 @@ const addQuestionValidator = ajv.compile({
   ],
 });
 
-export { IAddQuestion, addQuestionValidator };
+export { IQuestion, questionValidator };
