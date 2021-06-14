@@ -69,7 +69,7 @@ const addQuestionValidator = ajv.compile({
       },
       then: {
         properties: {
-          question: { type: "string", minLength: 3, maxLength: 128 },
+          question: { type: "string", minLength: 3, maxLength: 100 },
           categoryId: { ...commonOptions.categoryId },
         },
         ...commonOptions.other,
