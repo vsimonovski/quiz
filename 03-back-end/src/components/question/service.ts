@@ -1,7 +1,7 @@
 import QuestionModel from "./model";
 import IErrorResponse from "../../common/IErrorResponse.interface";
 import { IQuestion } from "./dto/Question";
-import BaseService from "../../services/BaseService";
+import BaseService from "../../common/BaseService";
 
 class QuestionService extends BaseService<QuestionModel> {
   protected async adaptModel(row: any): Promise<QuestionModel> {

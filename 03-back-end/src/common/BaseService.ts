@@ -1,6 +1,6 @@
-import IModel from "../common/IModel.interface";
+import IModel from "./IModel.interface";
 import * as mysql2 from "mysql2/promise";
-import IErrorResponse from "../common/IErrorResponse.interface";
+import IErrorResponse from "./IErrorResponse.interface";
 
 export default abstract class BaseService<ReturnModel extends IModel> {
   private dbConnection: mysql2.Connection;
