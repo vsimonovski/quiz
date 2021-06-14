@@ -1,18 +1,12 @@
-import QuestionService from "./service";
 import { Request, Response } from "express";
 import QuestionModel from "./model";
 import IErrorResponse from "../../common/IErrorResponse.interface";
 import { questionValidator, IQuestion } from "./dto/Question";
+import BaseController from "../../common/BaseController";
 
-class QuestionController {
-  private questionService: QuestionService;
-
-  constructor(questionService: QuestionService) {
-    this.questionService = questionService;
-  }
-
+class QuestionController extends BaseController {
   async getAll(req: Request, res: Response) {
-    const questions = await this.questionService.getAll();
+    const questions = await this.services.questionService.getAll();
 
     if (questions instanceof Array) {
       res.send(questions);
@@ -31,7 +25,7 @@ class QuestionController {
     }
 
     const data: QuestionModel | IErrorResponse =
-      await this.questionService.getById(questionId);
+      await this.services.questionService.getById(questionId);
 
     if (!(data instanceof QuestionModel)) {
       res.status(404).send(data);
@@ -54,7 +48,7 @@ class QuestionController {
     }
 
     const result: QuestionModel | IErrorResponse =
-      await this.questionService.add(data);
+      await this.services.questionService.add(data);
 
     res.send(result);
   }
@@ -74,7 +68,7 @@ class QuestionController {
     }
 
     const result: QuestionModel | IErrorResponse =
-      await this.questionService.edit(questionId, data);
+      await this.services.questionService.edit(questionId, data);
 
     if (result instanceof QuestionModel) {
       res.send(result);
@@ -92,15 +86,14 @@ class QuestionController {
     }
 
     const question: QuestionModel | IErrorResponse =
-      await this.questionService.getById(questionId);
+      await this.services.questionService.getById(questionId);
 
     if (!(question instanceof QuestionModel) && question.errorMessage)
       return res
         .status(404)
         .send({ errorCode: 404, errorMessage: question.errorMessage });
 
-    const status = await this.questionService.delete(questionId);
-    res.send(status);
+    res.send(await this.services.questionService.delete(questionId));
   }
 }
 

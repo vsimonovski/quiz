@@ -6,6 +6,7 @@ import * as mysql2 from "mysql2/promise";
 import IApplicationResources from "./common/IApplicationResources.interface";
 import QuestionRouter from "./components/question/router";
 import Router from "./router";
+import QuestionService from "./components/question/service";
 
 async function main() {
   const application: express.Application = express();
@@ -26,6 +27,10 @@ async function main() {
   };
 
   await resources.databaseConnection.connect();
+
+  resources.services = {
+    questionService: new QuestionService(resources),
+  };
 
   Router.setUpRoutes(application, resources, [new QuestionRouter()]);
 
