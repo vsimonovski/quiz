@@ -35,5 +35,10 @@ export default class QuestionRouter implements IRouter {
       "/question/:id",
       questionController.edit.bind(questionController)
     );
+
+    application.delete(
+      "/question/:id",
+      questionController.delete.bind(questionController)
+    );
   }
 }

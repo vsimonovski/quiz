@@ -82,6 +82,26 @@ class QuestionController {
     }
     res.status(404).send(result);
   }
+
+  async delete(req: Request, res: Response) {
+    const questionId: number = +req.params.id;
+
+    if (questionId <= 0 || isNaN(questionId)) {
+      res.sendStatus(404);
+      return;
+    }
+
+    const question: QuestionModel | IErrorResponse =
+      await this.questionService.getById(questionId);
+
+    if (!(question instanceof QuestionModel) && question.errorMessage)
+      return res
+        .status(404)
+        .send({ errorCode: 404, errorMessage: question.errorMessage });
+
+    const status = await this.questionService.delete(questionId);
+    res.send(status);
+  }
 }
 
 export default QuestionController;

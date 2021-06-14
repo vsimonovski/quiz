@@ -60,6 +60,8 @@ class QuestionService extends BaseService<QuestionModel> {
     { question, categoryId }: IQuestion
   ): Promise<QuestionModel | IErrorResponse> {
     try {
+      const sql: string =
+        "UPDATE question SET question = ? WHERE question_id = ?;";
       const currentQuestion: QuestionModel | IErrorResponse =
         await this.getById(questionId);
 
@@ -77,9 +79,6 @@ class QuestionService extends BaseService<QuestionModel> {
         };
       }
 
-      const sql: string =
-        "UPDATE question SET question = ? WHERE question_id = ?;";
-
       await this.db.execute(sql, [question, questionId]);
       return await this.getById(questionId);
     } catch (e) {
@@ -87,6 +86,56 @@ class QuestionService extends BaseService<QuestionModel> {
         errorCode: e?.errno,
         errorMessage: e?.sqlMessage,
       };
+    }
+  }
+
+  public async delete(questionId: number): Promise<IErrorResponse | null> {
+    try {
+      return this.db
+        .beginTransaction()
+        .then(async () => {
+          if (await this.deleteAnswerByQuestionId(questionId)) return;
+          throw { errorCode: -1003, sqlMessage: "Could not delete answer" };
+        })
+        .then(async () => {
+          if (await this.deleteQuestionById(questionId)) return;
+          throw { errno: -1002, sqlMessage: "Could not delete question" };
+        })
+        .then(async () => {
+          await this.db.commit();
+          return {
+            errorCode: 0,
+            errorMessage: "Question deleted!",
+          };
+        });
+    } catch (e) {
+      await this.db.rollback();
+      return {
+        errorCode: e?.errno,
+        errorMessage: e?.sqlMessage,
+      };
+    }
+  }
+
+  private async deleteQuestionById(questionId: number) {
+    try {
+      await this.db.execute(`DELETE FROM question WHERE question_id = ?;`, [
+        questionId,
+      ]);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  private async deleteAnswerByQuestionId(questionId: number) {
+    try {
+      await this.db.execute(`DELETE FROM answer WHERE question_id = ?;`, [
+        questionId,
+      ]);
+      return true;
+    } catch (e) {
+      return false;
     }
   }
 }
