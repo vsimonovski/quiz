@@ -9,6 +9,8 @@ import Router from "./router";
 import QuestionService from "./components/question/service";
 import AnswerRouter from "./components/answer/router";
 import AnswerService from "./components/answer/service";
+import CategoryService from "./components/category/service";
+import CategoryRouter from "./components/category/router";
 
 async function main() {
   const application: express.Application = express();
@@ -33,11 +35,13 @@ async function main() {
   resources.services = {
     questionService: new QuestionService(resources),
     answerService: new AnswerService(resources),
+    categoryService: new CategoryService(resources),
   };
 
   Router.setUpRoutes(application, resources, [
     new QuestionRouter(),
     new AnswerRouter(),
+    new CategoryRouter(),
   ]);
 
   application.use((req: Request, res: Response) => {
@@ -51,4 +55,6 @@ async function main() {
   application.listen(Config.server.port);
 }
 
-main();
+main()
+  .then()
+  .catch((e) => console.log(e));
