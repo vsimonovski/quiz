@@ -45,14 +45,18 @@ class AnswerService extends BaseService<AnswerModel> {
     return await this.getAllByFieldName("answer", "question_id", questionId);
   }
 
-  public async add(answer: IAnswer): Promise<AnswerModel | IErrorResponse> {
+  public async add({
+    answer,
+    questionId,
+    isCorrect,
+  }: IAnswer): Promise<AnswerModel | IErrorResponse> {
     try {
       const sql =
         "INSERT answer SET answer = ?, question_id = ?, is_correct =?;";
       const [insertInfo]: any = await this.db.execute(sql, [
-        answer.answer,
-        answer.questionId,
-        answer.isCorrect,
+        answer,
+        questionId,
+        isCorrect,
       ]);
 
       const newAnswerId: number = +insertInfo?.insertId;
@@ -105,8 +109,8 @@ class AnswerService extends BaseService<AnswerModel> {
       await this.db.execute(sql, [answerId]);
       return {
         errorCode: 0,
-        errorMessage: "Answer deleted!"
-      }
+        errorMessage: "Answer deleted!",
+      };
     } catch (e) {
       return {
         errorCode: e?.errno,
