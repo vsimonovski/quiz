@@ -2,6 +2,7 @@ import * as express from 'express';
 import IApplicationResources from '../../common/IApplicationResources.interface';
 import QuestionController from './controller';
 import IRouter from '../../common/IRouter.interface';
+import AuthMiddleware from '../../middleware/auth.middleware';
 
 export default class QuestionRouter implements IRouter {
     public setUpRoutes(
@@ -24,16 +25,19 @@ export default class QuestionRouter implements IRouter {
 
         application.post(
             '/question',
+            AuthMiddleware.verifyAuthToken,
             questionController.add.bind(questionController)
         );
 
         application.put(
             '/question/:id',
+            AuthMiddleware.verifyAuthToken,
             questionController.edit.bind(questionController)
         );
 
         application.delete(
             '/question/:id',
+            AuthMiddleware.verifyAuthToken,
             questionController.delete.bind(questionController)
         );
     }
