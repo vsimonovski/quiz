@@ -7,6 +7,8 @@ import IApplicationResources from "./common/IApplicationResources.interface";
 import QuestionRouter from "./components/question/router";
 import Router from "./router";
 import QuestionService from "./components/question/service";
+import AnswerRouter from "./components/answer/router";
+import AnswerService from "./components/answer/service";
 
 async function main() {
   const application: express.Application = express();
@@ -30,9 +32,13 @@ async function main() {
 
   resources.services = {
     questionService: new QuestionService(resources),
+    answerService: new AnswerService(resources),
   };
 
-  Router.setUpRoutes(application, resources, [new QuestionRouter()]);
+  Router.setUpRoutes(application, resources, [
+    new QuestionRouter(),
+    new AnswerRouter(),
+  ]);
 
   application.use((req: Request, res: Response) => {
     res.sendStatus(404);
