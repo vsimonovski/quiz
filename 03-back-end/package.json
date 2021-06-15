@@ -13,11 +13,13 @@
   "license": "ISC",
   "dependencies": {
     "ajv": "^8.6.0",
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mysql2": "^2.2.5"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.12",
     "@types/node": "^15.12.2",
     "eslint": "^7.28.0",

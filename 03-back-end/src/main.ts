@@ -11,6 +11,8 @@ import AnswerRouter from "./components/answer/router";
 import AnswerService from "./components/answer/service";
 import CategoryService from "./components/category/service";
 import CategoryRouter from "./components/category/router";
+import UserService from "./components/user/service";
+import UserRouter from "./components/user/router";
 
 async function main() {
   const application: express.Application = express();
@@ -36,12 +38,14 @@ async function main() {
     questionService: new QuestionService(resources),
     answerService: new AnswerService(resources),
     categoryService: new CategoryService(resources),
+    userService: new UserService(resources),
   };
 
   Router.setUpRoutes(application, resources, [
     new QuestionRouter(),
     new AnswerRouter(),
     new CategoryRouter(),
+    new UserRouter(),
   ]);
 
   application.use((req: Request, res: Response) => {
