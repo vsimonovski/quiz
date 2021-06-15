@@ -19,7 +19,7 @@ class QuestionController extends BaseController {
   async getById(req: Request, res: Response) {
     const questionId: number = +req.params.id;
 
-    if (questionId <= 0) {
+    if (questionId <= 0 || isNaN(questionId)) {
       res.sendStatus(400);
       return;
     }
@@ -28,7 +28,7 @@ class QuestionController extends BaseController {
       await this.services.questionService.getById(questionId);
 
     if (!(data instanceof QuestionModel)) {
-      res.status(404).send(data);
+      res.status(404).send({ errorCode: 404, errorMessage: data.errorMessage });
       return;
     }
 
@@ -81,7 +81,7 @@ class QuestionController extends BaseController {
     const questionId: number = +req.params.id;
 
     if (questionId <= 0 || isNaN(questionId)) {
-      res.sendStatus(404);
+      res.sendStatus(400);
       return;
     }
 

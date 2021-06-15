@@ -89,7 +89,7 @@ class QuestionService extends BaseService<QuestionModel> {
     }
   }
 
-  public async delete(questionId: number): Promise<IErrorResponse | null> {
+  public async delete(questionId: number): Promise<IErrorResponse> {
     try {
       return this.db
         .beginTransaction()
@@ -117,7 +117,7 @@ class QuestionService extends BaseService<QuestionModel> {
     }
   }
 
-  private async deleteQuestionById(questionId: number) {
+  private async deleteQuestionById(questionId: number): Promise<boolean> {
     try {
       await this.db.execute(`DELETE FROM question WHERE question_id = ?;`, [
         questionId,
@@ -128,7 +128,7 @@ class QuestionService extends BaseService<QuestionModel> {
     }
   }
 
-  private async deleteAnswerByQuestionId(questionId: number) {
+  private async deleteAnswerByQuestionId(questionId: number): Promise<boolean> {
     try {
       await this.db.execute(`DELETE FROM answer WHERE question_id = ?;`, [
         questionId,
