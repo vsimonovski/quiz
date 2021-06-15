@@ -53,8 +53,10 @@ async function main() {
   });
 
   application.listen(Config.server.port);
+
+  return `Application is running on port: ${Config.server.port}, Database is running on port: ${Config.database.port}`;
 }
 
 main()
-  .then()
+  .then((data) => console.log(data))
   .catch((e) => console.log(e));
