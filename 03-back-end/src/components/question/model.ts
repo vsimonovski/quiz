@@ -1,6 +1,6 @@
-import IModel from "../../common/IModel.interface";
+import IModel from '../../common/IModel.interface';
 
-export default class QuestionModel implements IModel{
+export default class QuestionModel implements IModel {
     questionId: number;
     question: string;
     categoryId: number;

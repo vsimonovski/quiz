@@ -1,5 +1,5 @@
 export default interface ITokenData {
-    role: "user";
+    role: 'user';
     id: number;
     identity: string;
 }

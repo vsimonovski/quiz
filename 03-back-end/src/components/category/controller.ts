@@ -1,7 +1,7 @@
-import { Request, Response } from "express";
-import BaseController from "../../common/BaseController";
-import CategoryModel from "./model";
-import IErrorResponse from "../../common/IErrorResponse.interface";
+import { Request, Response } from 'express';
+import BaseController from '../../common/BaseController';
+import CategoryModel from './model';
+import IErrorResponse from '../../common/IErrorResponse.interface';
 
 class CategoryController extends BaseController {
     async getAll(req: Request, res: Response) {
@@ -27,7 +27,10 @@ class CategoryController extends BaseController {
             await this.services.categoryService.getById(categoryId);
 
         if (!(data instanceof CategoryModel)) {
-            res.status(404).send({ errorCode: 404, errorMessage: data.errorMessage });
+            res.status(404).send({
+                errorCode: 404,
+                errorMessage: data.errorMessage,
+            });
             return;
         }
 
