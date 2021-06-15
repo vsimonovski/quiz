@@ -13,6 +13,7 @@ import CategoryService from "./components/category/service";
 import CategoryRouter from "./components/category/router";
 import UserService from "./components/user/service";
 import UserRouter from "./components/user/router";
+import AuthRouter from "./components/auth/router";
 
 async function main() {
   const application: express.Application = express();
@@ -46,6 +47,7 @@ async function main() {
     new AnswerRouter(),
     new CategoryRouter(),
     new UserRouter(),
+    new AuthRouter(),
   ]);
 
   application.use((req: Request, res: Response) => {

@@ -59,6 +59,20 @@ class UserService extends BaseService<UserModel> {
       };
     }
   }
+
+  public async getByUsername(
+    username: string
+  ): Promise<UserModel | IErrorResponse> {
+    const users = await this.getAllByFieldName("user", "username", username);
+    if (!(users instanceof Array) || users.length === 0) {
+      return {
+        errorCode: 404,
+        errorMessage: `User with ${username} does not exist.`,
+      };
+    }
+
+    return users[0];
+  }
 }
 
 export default UserService;
