@@ -1,27 +1,26 @@
 import React from 'react';
 import { NavLink, NavLinkContainer } from './AuthLink.style';
-import LINK_NAMES from './AuthLink.constant';
-import { AuthLinkProps } from './AuthLink.type';
+import { AuthLinkProps, LinkName } from './AuthLink.type';
 
 const AuthLink = React.memo(
     ({ activeLink, onActiveLinkChange }: AuthLinkProps) => {
         return (
             <NavLinkContainer>
                 <NavLink
-                    onClick={() => onActiveLinkChange(LINK_NAMES.PLAY)}
-                    primary={activeLink === LINK_NAMES.PLAY}
+                    onClick={() => onActiveLinkChange(LinkName.PLAY)}
+                    primary={activeLink === LinkName.PLAY}
                 >
                     Play
                 </NavLink>
                 <NavLink
-                    onClick={() => onActiveLinkChange(LINK_NAMES.REGISTER)}
-                    primary={activeLink === LINK_NAMES.REGISTER}
+                    onClick={() => onActiveLinkChange(LinkName.REGISTER)}
+                    primary={activeLink === LinkName.REGISTER}
                 >
                     Register
                 </NavLink>
                 <NavLink
-                    onClick={() => onActiveLinkChange(LINK_NAMES.LOGIN)}
-                    primary={activeLink === LINK_NAMES.LOGIN}
+                    onClick={() => onActiveLinkChange(LinkName.LOGIN)}
+                    primary={activeLink === LinkName.LOGIN}
                 >
                     Login
                 </NavLink>
