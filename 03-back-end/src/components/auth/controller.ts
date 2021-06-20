@@ -8,34 +8,7 @@ import * as jwt from 'jsonwebtoken';
 import Config from '../../config/dev';
 
 export default class AuthController extends BaseController {
-    public async userLogin(req: Request, res: Response) {
-        if (!userValidator(req.body)) {
-            return res.status(400).send(userValidator.errors);
-        }
-
-        const data = req.body as IUser;
-        const user = await this.services.userService.getByUsername(
-            data.username
-        );
-        if (!(user instanceof UserModel)) {
-            return res
-                .status(404)
-                .send({
-                    errorCode: user.errorCode,
-                    errorMessage: user.errorMessage,
-                });
-        }
-
-        if (!(await bcrypt.compare(data.password, user.passwordHash))) {
-            await new Promise((resolve) => setTimeout(resolve, 1000));
-            return res
-                .status(403)
-                .send({
-                    errorCode: 403,
-                    errorMessage: 'Invalid user password.',
-                });
-        }
-
+    private static signTokens(user: UserModel): [string, string] {
         const authTokenData: ITokenData = {
             id: user.userId,
             identity: user.username,
@@ -68,9 +41,64 @@ export default class AuthController extends BaseController {
             }
         );
 
+        return [authToken, refreshToken];
+    }
+
+    public async userLogin(req: Request, res: Response) {
+        if (!userValidator(req.body)) {
+            return res.status(400).send(userValidator.errors);
+        }
+
+        const data = req.body as IUser;
+        const user = await this.services.userService.getByUsername(
+            data.username
+        );
+        if (!(user instanceof UserModel)) {
+            return res.status(404).send({
+                errorCode: user.errorCode,
+                errorMessage: user.errorMessage,
+            });
+        }
+
+        if (!(await bcrypt.compare(data.password, user.passwordHash))) {
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+            return res.status(403).send({
+                errorCode: 403,
+                errorMessage: 'Invalid user password.',
+            });
+        }
+
+        const [authToken, refreshToken] = AuthController.signTokens(user);
+
         res.send({
             authToken,
             refreshToken,
         });
+    }
+
+    public async userRegister(req: Request, res: Response) {
+        if (!userValidator(req.body)) {
+            return res.status(400).send(userValidator.errors);
+        }
+
+        const data = req.body as IUser;
+        const user = await this.services.userService.add({
+            username: data.username,
+            password: data.password,
+        });
+
+        if (!(user instanceof UserModel)) {
+            return res.status(400).send({
+                errorCode: user.errorCode,
+                errorMessage: user.errorMessage,
+            });
+        }
+
+        const [authToken, refreshToken] = AuthController.signTokens(user);
+
+        res.send({
+            authToken,
+            refreshToken
+        })
     }
 }
