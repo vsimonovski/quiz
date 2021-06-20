@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import * as jwt from 'jsonwebtoken';
 import Config from '../config/dev';
-import ITokenData from "../components/auth/dto/ITokenData.interface";
+import ITokenData from '../components/auth/dto/ITokenData.interface';
 
 export default class AuthMiddleware {
     public static verifyAuthToken(
@@ -10,6 +10,10 @@ export default class AuthMiddleware {
         next: NextFunction
     ) {
         try {
+            if (Config.auth.allowRequestsEvenWithoutValidTokens) {
+                return next();
+            }
+
             if (typeof req.headers.authorization !== 'string') {
                 return res.status(401).send('No auth token specified.');
             }
