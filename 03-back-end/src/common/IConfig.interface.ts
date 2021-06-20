@@ -28,6 +28,7 @@ interface IConfig {
     };
     auth: {
         user: ITokenOptions;
+        allowRequestsEvenWithoutValidTokens: boolean;
     };
 }
 
