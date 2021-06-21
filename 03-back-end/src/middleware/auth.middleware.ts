@@ -36,7 +36,7 @@ export default class AuthMiddleware {
             );
 
             if (typeof result !== 'object') {
-                return res.status(400).send('Bad auth token data.');
+                return res.status(401).send('Bad auth token data.');
             }
 
             req.authorized = result as ITokenData;

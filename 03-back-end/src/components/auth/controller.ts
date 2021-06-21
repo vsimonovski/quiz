@@ -6,6 +6,10 @@ import * as bcrypt from 'bcrypt';
 import ITokenData from './dto/ITokenData.interface';
 import * as jwt from 'jsonwebtoken';
 import Config from '../../config/dev';
+import {
+    RefreshToken,
+    refreshTokenValidator,
+} from './dto/RefreshToken.interface';
 
 export default class AuthController extends BaseController {
     private static signTokens(user: UserModel): [string, string] {
@@ -98,7 +102,45 @@ export default class AuthController extends BaseController {
 
         res.send({
             authToken,
-            refreshToken
-        })
+            refreshToken,
+        });
+    }
+
+    public async userRefreshToken(req: Request, res: Response) {
+        if (!refreshTokenValidator(req.body)) {
+            return res.send(refreshTokenValidator.errors);
+        }
+
+        const tokenString: string = (req.body as RefreshToken).refreshToken;
+
+        try {
+            const existingData = jwt.verify(
+                tokenString,
+                Config.auth.user.auth.public
+            ) as ITokenData;
+
+            const newTokenData: ITokenData = {
+                id: existingData.id,
+                identity: existingData.identity,
+                role: existingData.role
+            }
+
+            const authToken = jwt.sign(
+                newTokenData,
+                Config.auth.user.auth.private,
+                {
+                    algorithm: Config.auth.user.algorithm,
+                    issuer: Config.auth.user.issuer,
+                    expiresIn: Config.auth.user.auth.duration,
+                }
+            );
+
+            res.send({
+                authToken: authToken,
+                refreshToken: null,
+            });
+        } catch (e) {
+            return res.status(400).send(`Invalid refresh token: ${e?.message}`);
+        }
     }
 }
