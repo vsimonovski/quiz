@@ -7,13 +7,8 @@ interface StyleConfiguration {
     fonts: any;
 }
 
-interface ApiConfiguration {
-    baseUrl: string;
-}
-
 interface AppConfiguration {
     styles: StyleConfiguration;
-    api: ApiConfiguration;
 }
 
 export type { AppConfiguration, StyleConfiguration };

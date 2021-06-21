@@ -12,7 +12,4 @@ export const appConfiguration: AppConfiguration = {
             montserrat: `'Montserrat', sans-serif`,
         },
     },
-    api: {
-        baseUrl: 'http://localhost:8080',
-    },
 };
