@@ -1,16 +1,20 @@
 import IConfig from '../common/IConfig.interface';
 import { readFileSync } from 'fs';
+import * as dotenv from 'dotenv';
+
+// initialize .env
+dotenv.config();
 
 const Config: IConfig = {
     server: {
-        port: 8080,
+        port: +process.env.SERVER_PORT,
     },
     database: {
-        host: 'localhost',
-        port: 3306,
-        user: 'root',
-        password: 'root',
-        database: 'quiz',
+        host: process.env.DB_HOST,
+        port: +process.env.DB_PORT,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME,
         charset: 'utf8',
         timezone: '+01:00',
     },
