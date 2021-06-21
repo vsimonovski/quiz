@@ -4,6 +4,7 @@
 04-front-end/npm-debug.log*
 04-front-end/yarn-debug.log*
 04-front-end/yarn-error.log*
+04-front-end/coverage/
 .idea/
 03-back-end/node_modules/
 03-back-end/dist/
