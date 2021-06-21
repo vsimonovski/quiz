@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { Title, HomeContainer } from './Home.style';
 import AuthLink from '../../components/AuthLink/AuthLink';
-import { LinkName } from '../../components/AuthLink/AuthLink.type';
+import LINK_NAMES from "../../components/AuthLink/AuthLink.constant";
 
 const Home = () => {
-    const [activeLink, setActiveLink]: [number, (activeLink: number) => void] =
-        useState(LinkName.PLAY);
+    const [activeLink, setActiveLink] = useState(LINK_NAMES.PLAY);
 
-    const handleActiveLinkChange = (activeLink: number) => {
-        setActiveLink(activeLink);
+    const handleActiveLinkChange = (e: string) => {
+        setActiveLink(e);
     };
 
     return (

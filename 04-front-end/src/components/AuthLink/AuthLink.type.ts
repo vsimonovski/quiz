@@ -1,12 +1,6 @@
 interface AuthLinkProps {
-    activeLink: number;
-    onActiveLinkChange: (activeLink: number) => void;
-}
-
-export enum LinkName {
-    PLAY = 0,
-    LOGIN,
-    REGISTER,
+    activeLink: string;
+    onActiveLinkChange: (activeLink: string) => void;
 }
 
 export type { AuthLinkProps };
