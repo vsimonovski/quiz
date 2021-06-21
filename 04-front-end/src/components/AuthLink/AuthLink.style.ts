@@ -25,6 +25,7 @@ const NavLinkContainer = styled.div`
     min-width: 245px;
     display: flex;
     justify-content: space-between;
+    margin: 23px 0;
 `;
 
 export { NavLinkContainer, NavLink };
