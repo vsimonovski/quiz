@@ -18,9 +18,7 @@ import AuthRouter from './components/auth/router';
 async function main() {
     const application: express.Application = express();
 
-    application.use(cors({
-        origin: 'http://localhost:3000'
-    }));
+    application.use(cors());
     application.use(express.json());
 
     const resources: IApplicationResources = {
