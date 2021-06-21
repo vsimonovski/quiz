@@ -3,9 +3,3 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
-
-jest.spyOn(window.localStorage.__proto__, 'setItem');
-window.localStorage.__proto__.setItem = jest.fn();
-
-jest.spyOn(window.localStorage.__proto__, 'getItem');
-window.localStorage.__proto__.getItem = jest.fn();
