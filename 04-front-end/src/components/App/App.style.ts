@@ -1,20 +1,12 @@
-import styled, { createGlobalStyle } from 'styled-components';
-import { appConfiguration } from '../../config/app.config';
-import {StyleConfiguration} from "../../config/app.config.type";
+import { createGlobalStyle } from 'styled-components';
 
-const styles: StyleConfiguration = appConfiguration.styles;
-
-const GlobalStyle = createGlobalStyle`
-    html, body, #root {
+export const GlobalStyle = createGlobalStyle`
+    html, body, #root, .App {
         height: 100%
     }
     body {
-      background-color: ${styles.colors.backgroundColor};
+        font-family: 'Orbitron', sans-serif;
+        padding: 0;
+        margin: 0;
     }
 `;
-
-const Container = styled.div`
-    height: 100%;
-`
-
-export {GlobalStyle, Container}
