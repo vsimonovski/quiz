@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Title, HomeContainer } from './Home.style';
 import AuthLink from '../../components/AuthLink/AuthLink';
 import { LinkName } from '../../components/AuthLink/AuthLink.type';
-import Auth from '../../components/Auth/Auth';
 
 const Home = () => {
     const [activeLink, setActiveLink]: [number, (activeLink: number) => void] =
@@ -19,7 +18,6 @@ const Home = () => {
                 activeLink={activeLink}
                 onActiveLinkChange={handleActiveLinkChange}
             />
-            <Auth activeLink={activeLink} />
         </HomeContainer>
     );
 };
