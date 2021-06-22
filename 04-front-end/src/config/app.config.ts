@@ -4,7 +4,7 @@ import { AppConfiguration } from './app.config.type';
 export const appConfiguration: AppConfiguration = {
     styles: {
         colors: {
-            backgroundColor: '#566BF3',
+            backgroundColor: '#c8d6e5',
             linkHover: '#FBEC43',
             link: '#FFF',
         },

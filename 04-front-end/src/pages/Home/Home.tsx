@@ -1,26 +1,37 @@
 import React, { useState } from 'react';
-import { Title, HomeContainer } from './Home.style';
-import AuthLink from '../../components/AuthLink/AuthLink';
-import { LinkName } from '../../components/AuthLink/AuthLink.type';
-import Auth from '../../components/Auth/Auth';
+import * as S from './Home.style';
+// import { LinkName } from '../../components/AuthLink/AuthLink.type';
+import { Button, Input } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 
 const Home = () => {
-    const [activeLink, setActiveLink]: [number, (activeLink: number) => void] =
-        useState(LinkName.PLAY);
-
-    const handleActiveLinkChange = (activeLink: number) => {
-        setActiveLink(activeLink);
-    };
+    // const [activeLink, setActiveLink]: [number, (activeLink: number) => void] =
+    //     useState(LinkName.PLAY);
+    //
+    // const handleActiveLinkChange = (activeLink: number) => {
+    //     setActiveLink(activeLink);
+    // };
 
     return (
-        <HomeContainer>
-            <Title>Quiz</Title>
-            <AuthLink
-                activeLink={activeLink}
-                onActiveLinkChange={handleActiveLinkChange}
-            />
-            <Auth activeLink={activeLink} />
-        </HomeContainer>
+        <S.HomeContainer>
+            <S.Menu>
+                <S.ButtonWrap>
+                    <Button type="primary">Log in</Button>
+                    <Button>Register</Button>
+                </S.ButtonWrap>
+            </S.Menu>
+            <S.Content>
+                <S.Title>Quiz</S.Title>
+                <div>
+                    <Input
+                        placeholder="enter username"
+                        prefix={<UserOutlined />}
+                    />
+                    <Button type="primary">Play</Button>
+                    <Button type="primary">Add Questions</Button>
+                </div>
+            </S.Content>
+        </S.HomeContainer>
     );
 };
 
