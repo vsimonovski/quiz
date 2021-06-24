@@ -5,7 +5,11 @@ import { Button } from 'antd';
 import { isLoggedIn } from '../../utils/auth.util';
 import { setAuthToken, setRefreshToken } from '../../api/api';
 
-const Menu = () => {
+interface MenuProps {
+    onLoginStatusChange?: (isLoggedIn: boolean) => void;
+}
+
+const Menu = ({ onLoginStatusChange }: MenuProps) => {
     const history = useHistory();
     const [isLogOutVisible, setIsLogOutVisible] = useState(false);
 
@@ -17,19 +21,21 @@ const Menu = () => {
 
     const handleOnLogoClick = () => {
         history.push('/');
-    }
+    };
 
     useEffect(() => {
         isLoggedIn()
             .then((res) => {
                 if (res.status === 'ok') {
                     setIsLogOutVisible(true);
+                    onLoginStatusChange && onLoginStatusChange(true);
                     return;
                 }
+                onLoginStatusChange && onLoginStatusChange(false);
                 setIsLogOutVisible(false);
             })
             .catch((e) => console.log(e));
-    }, []);
+    }, [onLoginStatusChange]);
 
     return (
         <S.Menu>
