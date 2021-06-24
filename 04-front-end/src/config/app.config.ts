@@ -4,12 +4,13 @@ import { AppConfiguration } from './app.config.type';
 export const appConfiguration: AppConfiguration = {
     styles: {
         colors: {
-            backgroundColor: '#c8d6e5',
+            backgroundColor: '#5f27cd',
             linkHover: '#FBEC43',
             link: '#FFF',
         },
         fonts: {
             montserrat: `'Montserrat', sans-serif`,
+            pressStart: `'Press Start 2P', cursive`,
         },
     },
     api: {

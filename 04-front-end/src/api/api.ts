@@ -3,7 +3,7 @@ import { appConfiguration } from '../config/app.config';
 
 type ApiMethod = 'get' | 'post' | 'put' | 'delete';
 type ApiRole = 'user' | 'guest';
-type ApiResponseStatus = 'ok' | 'error' | 'login';
+type ApiResponseStatus = 'ok' | 'error';
 
 export interface ApiResponse {
     status: ApiResponseStatus;
@@ -32,16 +32,15 @@ export const api = (
             .catch(async (err) => {
                 const errResponse = err?.response;
 
-                if (
-                    attemptToRefresh &&
-                    ('' + errResponse).includes('401')
-                ) {
-                    const newToken: string | null = await refreshToken();
+                if (attemptToRefresh && ('' + errResponse).includes('401')) {
+                    const newToken: string | ApiResponse = await refreshToken();
 
-                    if (newToken === null) {
+                    if (typeof newToken !== 'string') {
                         return resolve({
-                            status: 'login',
-                            data: null,
+                            status: 'error',
+                            data: {
+                                error: 'Not able to generate new refresh token',
+                            },
                         });
                     }
 
@@ -51,8 +50,8 @@ export const api = (
                         .then((res) => resolve(res))
                         .catch(() => {
                             resolve({
-                                status: 'login',
-                                data: null,
+                                status: 'error',
+                                data: { error: 'Request failed' },
                             });
                         });
                     return;
@@ -65,15 +64,37 @@ export const api = (
                     errResponse?.status === 403
                 ) {
                     return resolve({
-                        status: 'login',
-                        data: errResponse?.status === 401 ? null : 'Wrong Role',
+                        status: 'error',
+                        data: {
+                            error: `${errResponse.data.errorMessage}`
+                        },
                     });
                 }
 
                 return resolve({
                     status: 'error',
-                    data: '' + errResponse,
+                    data: { error: `${errResponse.data.errorMessage}` },
                 });
+            });
+    });
+};
+
+const refreshToken = (): Promise<string | ApiResponse> => {
+    return new Promise<string | ApiResponse>((resolve) => {
+        axios({
+            method: 'post',
+            baseURL: appConfiguration.api.baseUrl,
+            url: '/auth/user/refresh',
+            data: JSON.stringify({
+                refreshToken: getRefreshToken(),
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((res) => refreshTokenResponseHandler(res, resolve))
+            .catch((e) => {
+                resolve({ status: 'error', data: { error: e?.data?.error } });
             });
     });
 };
@@ -95,6 +116,20 @@ export const responseHandler = (
     });
 };
 
+const refreshTokenResponseHandler = (
+    res: AxiosResponse,
+    resolve: (data: string | ApiResponse) => void
+) => {
+    if (res.status !== 200) {
+        return resolve({
+            status: 'error',
+            data: { error: 'Unable to get new refresh token' },
+        });
+    }
+
+    resolve(res.data?.authToken);
+};
+
 export const getAuthToken = (): string => {
     return localStorage.getItem('auth-token') ?? '';
 };
@@ -109,35 +144,4 @@ export const setAuthToken = (token: string): void => {
 
 export const setRefreshToken = (token: string): void => {
     localStorage.setItem('refresh-token', token);
-};
-
-const refreshToken = (): Promise<string | null> => {
-    return new Promise<string | null>((resolve) => {
-        axios({
-            method: 'post',
-            baseURL: appConfiguration.api.baseUrl,
-            url: '/auth/user/refresh',
-            data: JSON.stringify({
-                refreshToken: getRefreshToken(),
-            }),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-            .then((res) => refreshTokenResponseHandler(res, resolve))
-            .catch(() => {
-                resolve(null);
-            });
-    });
-};
-
-const refreshTokenResponseHandler = (
-    res: AxiosResponse,
-    resolve: (data: string | null) => void
-) => {
-    if (res.status !== 200) {
-        return resolve(null);
-    }
-
-    resolve(res.data?.authToken);
 };
