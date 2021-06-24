@@ -1,36 +1,21 @@
 import styled from 'styled-components';
-import { Container } from '../../components/App/App.style';
+import { BaseContainer } from '../../components/App/App.style';
 import { appConfiguration } from '../../config/app.config';
 import { StyleConfiguration } from '../../config/app.config.type';
 
 const styles: StyleConfiguration = appConfiguration.styles;
 
-const Title = styled.h1`
+export const Title = styled.h1`
     text-transform: uppercase;
     text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-    color: #333;
+    color: #fff;
     font-size: 80px;
-    font-family: ${styles.fonts.montserrat};
+    font-family: ${styles.fonts.pressStart};
     font-weight: 800;
     margin: 0;
 `;
 
-const Menu = styled.div`
-    display: flex;
-    flex-direction: column;
-    background: rgba(0, 0, 0, 0.2);
-    height: 60px;
-    justify-content: center;
-`;
-
-const ButtonWrap = styled.div`
-    align-self: flex-end;
-    Button {
-        margin: 0 10px;
-    }
-`;
-
-const Content = styled.div`
+export const Content = styled.div`
     display: flex;
     flex: auto;
     flex-direction: column;
@@ -49,9 +34,7 @@ const Content = styled.div`
     }
 `;
 
-const HomeContainer = styled(Container)`
+export const Container = styled(BaseContainer)`
     display: flex;
     flex-direction: column;
 `;
-
-export { Title, HomeContainer, Menu, ButtonWrap, Content };
