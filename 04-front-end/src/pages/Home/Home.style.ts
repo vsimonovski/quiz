@@ -26,10 +26,7 @@ export const Content = styled.div`
         flex-direction: column;
         justify-content: space-between;
         Button {
-            margin: 10px 0;
-            &:last-child {
-                margin: 0;
-            }
+            margin-top: 10px;
         }
     }
 `;
