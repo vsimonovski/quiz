@@ -50,7 +50,10 @@ export default class AuthController extends BaseController {
 
     public async userLogin(req: Request, res: Response) {
         if (!userValidator(req.body)) {
-            return res.status(400).send(userValidator.errors);
+            return res.status(400).send({
+                errorCode: 400,
+                errorMessage: 'Invalid username or password',
+            });
         }
 
         const data = req.body as IUser;
@@ -66,8 +69,8 @@ export default class AuthController extends BaseController {
 
         if (!(await bcrypt.compare(data.password, user.passwordHash))) {
             await new Promise((resolve) => setTimeout(resolve, 1000));
-            return res.status(403).send({
-                errorCode: 403,
+            return res.status(401).send({
+                errorCode: 401,
                 errorMessage: 'Invalid user password.',
             });
         }
@@ -122,8 +125,8 @@ export default class AuthController extends BaseController {
             const newTokenData: ITokenData = {
                 id: existingData.id,
                 identity: existingData.identity,
-                role: existingData.role
-            }
+                role: existingData.role,
+            };
 
             const authToken = jwt.sign(
                 newTokenData,
@@ -142,5 +145,9 @@ export default class AuthController extends BaseController {
         } catch (e) {
             return res.status(400).send(`Invalid refresh token: ${e?.message}`);
         }
+    }
+
+    public sendOk(req: Request, res: Response) {
+        res.send('OK');
     }
 }

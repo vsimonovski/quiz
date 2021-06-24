@@ -25,19 +25,19 @@ export default class QuestionRouter implements IRouter {
 
         application.post(
             '/question',
-            AuthMiddleware.verifyAuthToken,
+            AuthMiddleware.getVerifier(),
             questionController.add.bind(questionController)
         );
 
         application.put(
             '/question/:id',
-            AuthMiddleware.verifyAuthToken,
+            AuthMiddleware.getVerifier(),
             questionController.edit.bind(questionController)
         );
 
         application.delete(
             '/question/:id',
-            AuthMiddleware.verifyAuthToken,
+            AuthMiddleware.getVerifier(),
             questionController.delete.bind(questionController)
         );
     }

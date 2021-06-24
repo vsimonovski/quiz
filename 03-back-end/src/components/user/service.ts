@@ -71,7 +71,7 @@ class UserService extends BaseService<UserModel> {
         if (!(users instanceof Array) || users.length === 0) {
             return {
                 errorCode: 404,
-                errorMessage: `User with ${username} does not exist.`,
+                errorMessage: `Username: ${username} does not exist.`,
             };
         }
 
