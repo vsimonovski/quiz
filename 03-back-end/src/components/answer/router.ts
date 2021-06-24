@@ -30,19 +30,19 @@ export default class AnswerRouter implements IRouter {
 
         application.post(
             '/answer',
-            AuthMiddleware.verifyAuthToken,
+            AuthMiddleware.getVerifier(),
             answerController.add.bind(answerController)
         );
 
         application.put(
             '/answer/:id',
-            AuthMiddleware.verifyAuthToken,
+            AuthMiddleware.getVerifier(),
             answerController.edit.bind(answerController)
         );
 
         application.delete(
             '/answer/:id',
-            AuthMiddleware.verifyAuthToken,
+            AuthMiddleware.getVerifier(),
             answerController.delete.bind(answerController)
         );
     }

@@ -2,6 +2,7 @@ import * as express from 'express';
 import IRouter from '../../common/IRouter.interface';
 import IApplicationResources from '../../common/IApplicationResources.interface';
 import AuthController from './controller';
+import AuthMiddleware from '../../middleware/auth.middleware';
 
 export default class AuthRouter implements IRouter {
     public setUpRoutes(
@@ -23,6 +24,12 @@ export default class AuthRouter implements IRouter {
         application.post(
             '/auth/refresh',
             authController.userRefreshToken.bind(authController)
+        );
+
+        application.get(
+            '/auth/user/ok',
+            AuthMiddleware.getVerifier(),
+            authController.sendOk.bind(authController)
         );
     }
 }

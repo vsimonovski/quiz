@@ -4,7 +4,7 @@ import Config from '../config/dev';
 import ITokenData from '../components/auth/dto/ITokenData.interface';
 
 export default class AuthMiddleware {
-    public static verifyAuthToken(
+    private static verifyAuthToken(
         req: Request,
         res: Response,
         next: NextFunction
@@ -47,5 +47,15 @@ export default class AuthMiddleware {
                 .status(500)
                 .send(`Token validation error: ${e?.message}`);
         }
+    }
+
+    public static getVerifier(): (
+        req: Request,
+        res: Response,
+        next: NextFunction
+    ) => void {
+        return (req: Request, res: Response, next: NextFunction) => {
+            this.verifyAuthToken(req, res, next);
+        };
     }
 }
