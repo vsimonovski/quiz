@@ -11,4 +11,8 @@ export const Content = styled.div`
     display: flex;
     justify-content: center;
     background-color: #dfe6e9;
+
+    .site-form-item-icon {
+        color: rgba(0, 0, 0, 0.25);
+    }
 `;

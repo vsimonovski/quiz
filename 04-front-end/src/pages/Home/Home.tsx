@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import * as S from './Home.style';
 import { Button, Input } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import Menu from '../../components/Menu/Menu';
 
 const Home = () => {
-    const [isAddQuestionsVisible, setIsAddQuestionsVisible] = useState(false);
+    const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
-    const handleLoginStatus = (isLoggedIn: boolean): void => {
-        setIsAddQuestionsVisible(isLoggedIn);
-    };
+    const handleLoginStatus = useCallback((isLoggedIn: boolean): void => {
+        setIsUserLoggedIn(isLoggedIn);
+    }, []);
 
     return (
         <S.Container>
@@ -17,12 +17,16 @@ const Home = () => {
             <S.Content>
                 <S.Title>Quiz</S.Title>
                 <div>
-                    <Input
-                        placeholder="enter username"
-                        prefix={<UserOutlined />}
-                    />
+                    {!isUserLoggedIn && (
+                        <Input
+                            placeholder="enter username"
+                            prefix={
+                                <UserOutlined className="site-form-item-icon" />
+                            }
+                        />
+                    )}
                     <Button type="primary">Play</Button>
-                    {isAddQuestionsVisible && (
+                    {isUserLoggedIn && (
                         <Button type="primary">Add Questions</Button>
                     )}
                 </div>

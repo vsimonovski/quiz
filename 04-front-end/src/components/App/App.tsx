@@ -15,12 +15,12 @@ const App = () => {
             <Switch>
                 <Route exact path="/" component={Home} />
                 <Route path="/login">
-                    <Form>
+                    <Form title="Log in">
                         <Login />
                     </Form>
                 </Route>
                 <Route path="/register">
-                    <Form>
+                    <Form title="Register">
                         <Registration />
                     </Form>
                 </Route>
