@@ -97,7 +97,9 @@ export default class AuthController extends BaseController {
         if (!(user instanceof UserModel)) {
             return res.status(400).send({
                 errorCode: user.errorCode,
-                errorMessage: user.errorMessage,
+                errorMessage: user.errorMessage.includes('Duplicate')
+                    ? `Username ${data.username} already exists`
+                    : user.errorMessage,
             });
         }
 

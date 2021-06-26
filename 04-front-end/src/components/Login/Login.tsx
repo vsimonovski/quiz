@@ -1,29 +1,22 @@
 import React, { useState } from 'react';
-import * as S from './Login.style';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Col, Row } from 'antd';
+import * as S from '../../pages/Form/FormContainer/FormContainer.style';
 import {
     attemptUserLogin,
     usernameRules,
     passwordRules,
 } from '../../utils/auth.util';
-import { LoginFields } from './Login.type';
 import { setAuthToken, setRefreshToken } from '../../api/api';
-import { useHistory } from 'react-router-dom';
-
-const layout = {
-    labelCol: { span: 8 },
-    wrapperCol: { span: 16 },
-};
-const tailLayout = {
-    wrapperCol: { offset: 8, span: 16 },
-};
+import { Link, useHistory } from 'react-router-dom';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { AuthFields } from '../../pages/Form/Form.type';
 
 const Login = () => {
     const [errorsOnLogin, setErrorsOnLogin] = useState('');
     const [isFormSubmitting, setIsFormSubmitting] = useState(false);
     const history = useHistory();
 
-    const onFinish = ({ username, password }: LoginFields) => {
+    const onFinish = ({ username, password }: AuthFields) => {
         setIsFormSubmitting(true);
         setErrorsOnLogin('');
         attemptUserLogin(username, password).then(({ data, status }) => {
@@ -43,43 +36,54 @@ const Login = () => {
         console.log('Failed:', errorInfo);
     };
     return (
-        <S.Container>
-            <h1>Log In</h1>
+        <div>
             <Form
-                {...layout}
                 name="basic"
                 initialValues={{ remember: true }}
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
             >
-                <Form.Item
-                    label="Username"
-                    name="username"
-                    rules={usernameRules}
-                >
-                    <Input />
-                </Form.Item>
-
-                <Form.Item
-                    label="Password"
-                    name="password"
-                    rules={passwordRules}
-                >
-                    <Input.Password />
-                </Form.Item>
-
-                <Form.Item {...tailLayout}>
-                    <Button
-                        type="primary"
-                        htmlType="submit"
-                        loading={isFormSubmitting}
-                    >
-                        Submit
-                    </Button>
-                </Form.Item>
+                <Row>
+                    <Col span={20} offset={2}>
+                        <Form.Item name="username" rules={usernameRules}>
+                            <Input
+                                prefix={
+                                    <UserOutlined className="site-form-item-icon" />
+                                }
+                                placeholder="Username"
+                            />
+                        </Form.Item>
+                    </Col>
+                    <Col span={20} offset={2}>
+                        <Form.Item name="password" rules={passwordRules}>
+                            <Input
+                                prefix={
+                                    <LockOutlined className="site-form-item-icon" />
+                                }
+                                type="password"
+                                placeholder="Password"
+                            />
+                        </Form.Item>
+                    </Col>
+                    <Col span={20} offset={2}>
+                        <Form.Item>
+                            <Button
+                                type="primary"
+                                htmlType="submit"
+                                className="submit-form-button"
+                                loading={isFormSubmitting}
+                            >
+                                Log in
+                            </Button>
+                            Or <Link to="/register">register now!</Link>
+                        </Form.Item>
+                    </Col>
+                    <Col span={20} offset={2}>
+                        <S.ErrorMessage>{errorsOnLogin}</S.ErrorMessage>
+                    </Col>
+                </Row>
             </Form>
-            <S.ErrorMessage>{errorsOnLogin}</S.ErrorMessage>
-        </S.Container>
+        </div>
     );
 };
 

@@ -21,6 +21,21 @@ export const passwordRules: Rule[] = [
     { min: 6, message: 'Password is too short' },
 ];
 
+export const confirmPasswordRules: Rule[] = [
+    {
+        required: true,
+        message: 'Confirm your password',
+    },
+    ({ getFieldValue }) => ({
+        validator(_, value) {
+            if (!value || getFieldValue('password') === value) {
+                return Promise.resolve();
+            }
+            return Promise.reject(new Error('Password do not match'));
+        },
+    }),
+]
+
 export const attemptUserLogin = (
     username: string,
     password: string

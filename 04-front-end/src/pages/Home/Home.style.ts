@@ -28,6 +28,11 @@ export const Content = styled.div`
         Button {
             margin-top: 10px;
         }
+        min-width: 200px;
+    }
+
+    .site-form-item-icon {
+        color: rgba(0, 0, 0, 0.25);
     }
 `;
 

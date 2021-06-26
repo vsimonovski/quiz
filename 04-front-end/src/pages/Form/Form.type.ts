@@ -2,6 +2,13 @@ import React from 'react';
 
 interface FormProps {
     children: React.ReactNode;
+    title: string;
 }
 
-export type { FormProps };
+interface AuthFields {
+    username: string;
+    password: string;
+}
+
+
+export type { FormProps, AuthFields };

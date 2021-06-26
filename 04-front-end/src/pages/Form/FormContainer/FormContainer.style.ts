@@ -12,11 +12,19 @@ export const Container = styled.div`
     height: 464px;
     padding: 24px;
     margin-top: 40px;
+
+    .site-form-item-icon {
+        color: rgba(0, 0, 0, 0.25);
+    }
+
+    .submit-form-button {
+        width: 100%;
+    }
 `;
 
 export const ErrorMessage = styled.div`
     height: 10px;
     content: '&nbsp';
     color: #e74c3c;
-    transition: all 500ms ease-in;
+    text-align: center;
 `;
