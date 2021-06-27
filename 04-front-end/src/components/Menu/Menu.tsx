@@ -11,6 +11,9 @@ interface MenuProps {
 
 const Menu = ({ onLoginStatusChange }: MenuProps) => {
     const history = useHistory();
+    const isOnAuthPage =
+        history.location.pathname === '/login' ||
+        history.location.pathname === '/register';
     const [isLogOutVisible, setIsLogOutVisible] = useState(false);
 
     const handleLogOut = () => {
@@ -26,16 +29,20 @@ const Menu = ({ onLoginStatusChange }: MenuProps) => {
     useEffect(() => {
         isLoggedIn()
             .then((res) => {
-                if (res.status === 'ok') {
+                if (res.status === 'ok' && !isOnAuthPage) {
                     setIsLogOutVisible(true);
                     onLoginStatusChange && onLoginStatusChange(true);
+                    return;
+                }
+                if (res.status === 'ok' && isOnAuthPage) {
+                    history.push('/');
                     return;
                 }
                 onLoginStatusChange && onLoginStatusChange(false);
                 setIsLogOutVisible(false);
             })
             .catch((e) => console.log(e));
-    }, [onLoginStatusChange]);
+    }, [onLoginStatusChange, history, isOnAuthPage]);
 
     return (
         <S.Menu>

@@ -11,6 +11,10 @@ export const usernameRules: Rule[] = [
         min: 5,
         message: 'Username is too short',
     },
+    {
+        max: 64,
+        message: 'Username is too long',
+    },
 ];
 
 export const passwordRules: Rule[] = [
@@ -19,6 +23,7 @@ export const passwordRules: Rule[] = [
         message: 'Password is required',
     },
     { min: 6, message: 'Password is too short' },
+    { max: 255, message: 'Password is too long' },
 ];
 
 export const confirmPasswordRules: Rule[] = [
@@ -34,7 +39,7 @@ export const confirmPasswordRules: Rule[] = [
             return Promise.reject(new Error('Password do not match'));
         },
     }),
-]
+];
 
 export const attemptUserLogin = (
     username: string,
