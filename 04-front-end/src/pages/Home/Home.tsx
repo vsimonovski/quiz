@@ -3,13 +3,22 @@ import * as S from './Home.style';
 import { Button, Input } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import Menu from '../../components/Menu/Menu';
+import {useHistory} from "react-router-dom";
 
 const Home = () => {
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+    const history = useHistory();
 
     const handleLoginStatus = useCallback((isLoggedIn: boolean): void => {
         setIsUserLoggedIn(isLoggedIn);
     }, []);
+
+    const handlePlayClick = () => {
+        // TODO add username only logic
+        if(isUserLoggedIn) {
+            history.push('/game');
+        }
+    }
 
     return (
         <S.Container>
@@ -25,7 +34,7 @@ const Home = () => {
                             }
                         />
                     )}
-                    <Button type="primary">Play</Button>
+                    <Button type="primary" onClick={handlePlayClick}>Play</Button>
                     {isUserLoggedIn && (
                         <Button type="primary">Add Questions</Button>
                     )}

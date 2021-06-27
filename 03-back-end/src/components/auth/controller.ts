@@ -85,7 +85,10 @@ export default class AuthController extends BaseController {
 
     public async userRegister(req: Request, res: Response) {
         if (!userValidator(req.body)) {
-            return res.status(400).send(userValidator.errors);
+            return res.status(400).send({
+                errorCode: 400,
+                errorMessage: "Invalid username or password."
+            });
         }
 
         const data = req.body as IUser;
