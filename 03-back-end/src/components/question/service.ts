@@ -123,6 +123,16 @@ class QuestionService extends BaseService<QuestionModel> {
         }
     }
 
+    public async getAllByCategoryId(
+        categoryId: number
+    ): Promise<QuestionModel[] | IErrorResponse> {
+        return await this.getAllByFieldName(
+            'question',
+            'category_id',
+            categoryId
+        );
+    }
+
     private async deleteQuestionById(questionId: number): Promise<boolean> {
         try {
             await this.db.execute(

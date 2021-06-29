@@ -34,6 +34,11 @@ export default class AnswerRouter implements IRouter {
             answerController.add.bind(answerController)
         );
 
+        application.post(
+            '/answer/validation',
+            answerController.isValidAnswerForQuestion.bind(answerController)
+        );
+
         application.put(
             '/answer/:id',
             AuthMiddleware.getVerifier(),
