@@ -1,5 +1,6 @@
 import React from 'react';
 import * as S from './PlayerStats.style';
+import { Spin } from 'antd';
 
 interface PlayerStatsProps {
     username: string;
@@ -9,7 +10,8 @@ interface PlayerStatsProps {
 const PlayerStats = ({ username, score }: PlayerStatsProps) => {
     return (
         <S.Container>
-            <span className='username'>{username}</span> <span>{score}pts</span>
+            <span className="username">{username ? username : <Spin />}</span>{' '}
+            <span>{score}pts</span>
         </S.Container>
     );
 };
