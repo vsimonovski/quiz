@@ -20,7 +20,8 @@ export const Stats = styled.div`
 `;
 
 export const QuestionCounter = styled.span`
-    color: #fff;
+    color: aqua;
     font-size: 18px;
     font-weight: bold;
+    margin-bottom: 20px;
 `;

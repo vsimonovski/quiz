@@ -45,22 +45,16 @@ export const attemptUserLogin = (
     username: string,
     password: string
 ): Promise<ApiResponse> => {
-    return api('post', '/auth/login', 'guest', { username, password }, false);
+    return api('post', '/auth/login', { username, password }, false);
 };
 
 export const attemptUserRegistration = (
     username: string,
     password: string
 ): Promise<ApiResponse> => {
-    return api(
-        'post',
-        '/auth/register',
-        'guest',
-        { username, password },
-        false
-    );
+    return api('post', '/auth/register', { username, password }, false);
 };
 
 export const isLoggedIn = () => {
-    return api('get', '/auth/user/ok', 'user', true);
+    return api('get', '/auth/user/ok', false, true);
 };

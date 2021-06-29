@@ -2,8 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 import { appConfiguration } from '../config/app.config';
 
 type ApiMethod = 'get' | 'post' | 'put' | 'delete';
-type ApiRole = 'user' | 'guest';
-type ApiResponseStatus = 'ok' | 'error';
+export type ApiResponseStatus = 'ok' | 'error';
 
 export interface ApiResponse {
     status: ApiResponseStatus;
@@ -13,7 +12,6 @@ export interface ApiResponse {
 export const api = (
     method: ApiMethod,
     path: string,
-    role: ApiRole = 'user',
     body: any | undefined = undefined,
     attemptToRefresh: boolean = true
 ): Promise<ApiResponse> => {
@@ -46,7 +44,7 @@ export const api = (
 
                     setAuthToken(newToken);
 
-                    api(method, path, role, body, false)
+                    api(method, path, body, false)
                         .then((res) => resolve(res))
                         .catch(() => {
                             resolve({

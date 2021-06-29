@@ -1,31 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import * as S from './QuestionTimer.style';
 import { ClockCircleOutlined } from '@ant-design/icons';
 
 interface QuestionTimerProps {
     clockTime: number;
-    onClockRunsOut?: () => void;
+    setClockTime: (clockTime: number) => void;
+    onClockRunsOut: () => void;
+    shouldClockFreeze: boolean;
 }
 
-const QuestionTimer = ({ clockTime, onClockRunsOut }: QuestionTimerProps) => {
-    const [time, setTime] = useState(clockTime || 0);
-
+const QuestionTimer = ({
+    clockTime,
+    setClockTime,
+    onClockRunsOut,
+    shouldClockFreeze,
+}: QuestionTimerProps) => {
     useEffect(() => {
         let timer: number;
-        if (time > 0) {
-            timer = window.setInterval(() => setTime(time - 1), 1000);
+        if (clockTime > 0 && !shouldClockFreeze) {
+            timer = window.setInterval(() => setClockTime(clockTime - 1), 1000);
         }
-        if (time === 0) {
+        if (clockTime === 0) {
             onClockRunsOut && onClockRunsOut();
         }
         return () => {
             return clearInterval(timer);
         };
-    }, [time, onClockRunsOut]);
+    }, [clockTime, onClockRunsOut]);
     return (
         <S.Container>
             <ClockCircleOutlined />
-            <span className="time">{time}</span>
+            <span className="time">{clockTime}</span>
         </S.Container>
     );
 };
