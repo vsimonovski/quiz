@@ -6,6 +6,11 @@ interface IAnswer {
     isCorrect: number;
 }
 
+interface ISubmittedAnswer {
+    answer: string;
+    questionId: number;
+}
+
 const ajv = new Ajv();
 
 const answerValidator = ajv.compile({
@@ -19,4 +24,14 @@ const answerValidator = ajv.compile({
     additionalProperties: false,
 });
 
-export { IAnswer, answerValidator };
+const submittedAnswerValidator = ajv.compile({
+    type: 'object',
+    properties: {
+        answer: { type: 'string' },
+        questionId: { type: 'number' },
+    },
+    required: ['answer', 'questionId'],
+    additionalProperties: false,
+});
+
+export { IAnswer, ISubmittedAnswer, answerValidator, submittedAnswerValidator };

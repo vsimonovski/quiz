@@ -2,7 +2,12 @@ import { Request, Response } from 'express';
 import BaseController from '../../common/BaseController';
 import AnswerModel from './model';
 import IErrorResponse from '../../common/IErrorResponse.interface';
-import { answerValidator, IAnswer } from './dto/Answer';
+import {
+    answerValidator,
+    IAnswer,
+    ISubmittedAnswer,
+    submittedAnswerValidator,
+} from './dto/Answer';
 import QuestionModel from '../question/model';
 
 class AnswerController extends BaseController {
@@ -136,6 +141,31 @@ class AnswerController extends BaseController {
         }
 
         res.send(await this.services.answerService.delete(answerId));
+    }
+
+    async isValidAnswerForQuestion(req: Request, res: Response) {
+        const submittedAnswer: ISubmittedAnswer = req.body;
+
+        if (!submittedAnswerValidator(submittedAnswer)) {
+            res.status(400).send(submittedAnswerValidator.errors);
+            return;
+        }
+
+        const isValidAnswer: boolean | IErrorResponse =
+            await this.services.answerService.isValidAnswerForQuestion(
+                submittedAnswer.questionId,
+                submittedAnswer.answer
+            );
+
+        if (typeof isValidAnswer !== 'boolean') {
+            res.status(400).send({
+                errorCode: isValidAnswer.errorCode,
+                errorMessage: isValidAnswer.errorMessage,
+            });
+            return;
+        }
+
+        res.send(isValidAnswer);
     }
 }
 

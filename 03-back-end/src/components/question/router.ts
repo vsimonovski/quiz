@@ -23,6 +23,13 @@ export default class QuestionRouter implements IRouter {
             questionController.getById.bind(questionController)
         );
 
+        application.get(
+            '/question/random/:id',
+            questionController.getRandomQuestionByCategoryId.bind(
+                questionController
+            )
+        );
+
         application.post(
             '/question',
             AuthMiddleware.getVerifier(),

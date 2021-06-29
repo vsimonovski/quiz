@@ -98,6 +98,42 @@ class QuestionController extends BaseController {
 
         res.send(await this.services.questionService.delete(questionId));
     }
+
+    async getRandomQuestionByCategoryId(req: Request, res: Response) {
+        const categoryId: number = +req.params.id;
+
+        if (categoryId <= 0 || isNaN(categoryId)) {
+            res.sendStatus(400);
+            return;
+        }
+
+        const data: QuestionModel[] | IErrorResponse =
+            await this.services.questionService.getAllByCategoryId(categoryId);
+
+        if (!(data instanceof Array)) {
+            res.status(500).send({
+                errorCode: 500,
+                errorMessage: data.errorMessage,
+            });
+            return;
+        }
+
+        if (data instanceof Array && data.length === 0) {
+            res.status(404).send({
+                errorCode: 404,
+                errorMessage: `Category with id ${categoryId} does not exist`,
+            });
+            return;
+        }
+
+        if (data instanceof Array) {
+            const randomQuestionByCategoryId =
+                data[Math.floor(Math.random() * data.length)];
+
+            res.send(randomQuestionByCategoryId);
+            return;
+        }
+    }
 }
 
 export default QuestionController;

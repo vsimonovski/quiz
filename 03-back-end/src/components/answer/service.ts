@@ -122,6 +122,27 @@ class AnswerService extends BaseService<AnswerModel> {
             };
         }
     }
+
+    public async isValidAnswerForQuestion(
+        questionId: number,
+        submittedAnswer: string
+    ): Promise<boolean | IErrorResponse> {
+        const data = await this.getAllByQuestionId(questionId);
+        if (data instanceof Array) {
+            const correctAnswer = data.find(({ answer, isCorrect }) => {
+                if (isCorrect && answer === submittedAnswer) {
+                    return true;
+                }
+            });
+
+            return !!correctAnswer;
+        }
+
+        return {
+            errorCode: data.errorCode,
+            errorMessage: data.errorMessage,
+        };
+    }
 }
 
 export default AnswerService;
