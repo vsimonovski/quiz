@@ -5,6 +5,8 @@ import {
     Question,
     Answer,
     AnswerResponse,
+    AnswerExplanationResponse,
+    AnswerExplanation,
 } from '../pages/Game/Game.type';
 
 export const getRandomQuestionByCategoryId = (
@@ -26,6 +28,24 @@ export const checkIfAnswerIsCorrect = (
     return api('post', '/answer/validation', { questionId, answer }, false);
 };
 
+export const getAnswerExplanation = (
+    questionId: number
+): Promise<AnswerExplanationResponse> => {
+    return api('get', `/answer-explanation/${questionId}`, false, true);
+};
+
+export const editAnswerExplanation = (
+    questionId: number,
+    answerExplanation: string
+): Promise<AnswerExplanationResponse> => {
+    return api(
+        'put',
+        `/answer-explanation/${questionId}`,
+        { answerExplanation },
+        true
+    );
+};
+
 export const getInitialQuestionState = (): Question => {
     return {
         questionId: 0,
@@ -38,6 +58,13 @@ export const getInitialAnswerState = (): Answer => {
     return {
         answer: '',
         isCorrect: false,
+    };
+};
+
+export const getInitialAnswerExplanationState = (): AnswerExplanation => {
+    return {
+        questionId: 0,
+        answerExplanation: '',
     };
 };
 

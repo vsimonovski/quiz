@@ -1,6 +1,6 @@
 import React from 'react';
-import WordGuessGame from '../WordGuessGame/WordGuessGame';
-import { Question } from '../Game.type';
+import WordGuessGame from '../../pages/Game/WordGuessGame/WordGuessGame';
+import { Question } from '../../pages/Game/Game.type';
 
 interface CurrentQuestionProps {
     questionNumber: number;

@@ -10,6 +10,11 @@ export interface AnswerResponse {
     data: boolean;
 }
 
+export interface AnswerExplanationResponse {
+    status: ApiResponseStatus;
+    data: AnswerExplanation;
+}
+
 export interface LetterCount {
     [letter: string]: number;
 }
@@ -23,4 +28,9 @@ export interface Question {
 export interface Answer {
     answer: string;
     isCorrect: boolean;
+}
+
+export interface AnswerExplanation {
+    answerExplanation: string;
+    questionId: number;
 }
