@@ -1,25 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import * as S from './FlagGuessGame.style';
-import { Answer, GameProps } from '../Game.type';
-import { getAnswersByQuestionId } from '../../../utils/game.util';
+import { GameProps } from '../Game.type';
 import { Spin } from 'antd';
+import useOfferedAnswer from "../../../utils/hooks/useOfferedAnswer";
 
 const FlagGuessGame = ({ questionData, onAnswerSubmit }: GameProps) => {
-    const [answers, setAnswers] = useState<Answer[]>([]);
-
-    useEffect(() => {
-        getAnswersByQuestionId(questionData.questionId).then((res) => {
-            if (res.status === 'ok') {
-                setAnswers(res.data);
-            }
-        });
-    }, []);
+    const offeredAnswers = useOfferedAnswer(questionData.questionId);
 
     const handleFlagClick = (countryCode: string) => {
         onAnswerSubmit(countryCode);
     };
 
-    if (!answers.length) return <Spin />;
+    if (!offeredAnswers.length) return <Spin />;
 
     return (
         <S.Container>
@@ -27,7 +19,7 @@ const FlagGuessGame = ({ questionData, onAnswerSubmit }: GameProps) => {
                 Guess flag for the country: {questionData.question}
             </S.Title>
             <div>
-                {answers.map(({ answer: countryCode }) => {
+                {offeredAnswers.map(({ answer: countryCode }) => {
                     return (
                         <img
                             src={`https://www.countryflags.io/${countryCode}/flat/64.png`}
