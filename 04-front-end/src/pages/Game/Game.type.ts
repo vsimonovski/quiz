@@ -5,7 +5,7 @@ export interface QuestionResponse {
     data: Question;
 }
 
-export interface AnswerResponse {
+export interface AnswerValidationResponse {
     status: ApiResponseStatus;
     data: boolean;
 }
@@ -13,6 +13,11 @@ export interface AnswerResponse {
 export interface AnswerExplanationResponse {
     status: ApiResponseStatus;
     data: AnswerExplanation;
+}
+
+export interface AnswerResponse {
+    status: ApiResponseStatus;
+    data: Answer[]
 }
 
 export interface LetterCount {

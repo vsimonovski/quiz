@@ -2,6 +2,7 @@ import React from 'react';
 import WordGuessGame from '../../pages/Game/WordGuessGame/WordGuessGame';
 import { Question } from '../../pages/Game/Game.type';
 import CountryGuessGame from '../../pages/Game/CountryGuessGame/CountryGuessGame';
+import FlagGuessGame from '../../pages/Game/FlagGuessGame/FlagGuessGame';
 
 interface CurrentQuestionProps {
     questionNumber: number;
@@ -25,6 +26,13 @@ const CurrentQuestion = ({
 
             {questionNumber === 2 && (
                 <CountryGuessGame
+                    questionData={questionData}
+                    onAnswerSubmit={onAnswerSubmit}
+                />
+            )}
+
+            {questionNumber === 3 && (
+                <FlagGuessGame
                     questionData={questionData}
                     onAnswerSubmit={onAnswerSubmit}
                 />
