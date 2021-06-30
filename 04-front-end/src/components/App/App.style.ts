@@ -6,7 +6,14 @@ const styles: StyleConfiguration = appConfiguration.styles;
 
 export const GlobalStyle = createGlobalStyle`
     html, body, #root {
-        height: 100%
+        height: 100%;
+
+        .ant-spin.ant-spin-spinning{
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
     }
     body {
       background-color: ${styles.colors.backgroundColor};

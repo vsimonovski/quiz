@@ -13,10 +13,10 @@ import {
 import { getAuthToken } from '../../api/api';
 import PlayerStats from '../../components/PlayerStats/PlayerStats';
 import QuestionTimer from '../../components/QuestionTimer/QuestionTimer';
-import AnswerContainer from './AnswerContainer/AnswerContainer';
-import CurrentQuestion from './CurrentQuestion/CurrentQuestion';
+import AnswerContainer from '../../components/AnswerContainer/AnswerContainer';
+import CurrentQuestion from '../../components/CurrentQuestion/CurrentQuestion';
 import * as S from './Game.style';
-import { Button } from 'antd';
+import { Button, Spin } from 'antd';
 
 const Game = () => {
     const [username, setUsername] = useState('');
@@ -28,9 +28,11 @@ const Game = () => {
     const [score, setScore] = useState(0);
     const [clockTime, setClockTime] = useState(10);
     const [isClockTimeUp, setIsClockTimeUp] = useState(false);
+    const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
     const history = useHistory();
 
     useEffect(() => {
+        setIsUserLoggedIn(false);
         isLoggedIn()
             .then((res) => {
                 if (res.status === 'ok') {
@@ -38,6 +40,7 @@ const Game = () => {
                         getAuthToken()
                     );
                     setUsername(identity);
+                    setIsUserLoggedIn(true);
                     return;
                 }
                 history.push('/login');
@@ -74,7 +77,6 @@ const Game = () => {
         setAnswerData(getInitialAnswerState);
 
         checkIfAnswerIsCorrect(questionData.questionId, answer).then((res) => {
-            console.log(res);
             if (res.status === 'ok') {
                 setAnswerData({ answer: answer, isCorrect: res.data });
                 setScore(
@@ -93,38 +95,38 @@ const Game = () => {
         setQuestionNumber(questionNumber + 1);
     };
 
+    if (!questionData.question.length) return <Spin size="large" />;
+
     return (
         <S.Container>
             <S.Stats>
                 <PlayerStats username={username} score={score} />
 
-                {!!questionData.question.length && (
-                    <QuestionTimer
-                        clockTime={clockTime}
-                        setClockTime={setClockTime}
-                        onClockRunsOut={handleClockRunsOut}
-                        shouldClockFreeze={!!answerData.answer.length}
-                    />
-                )}
+                <QuestionTimer
+                    clockTime={clockTime}
+                    setClockTime={setClockTime}
+                    onClockRunsOut={handleClockRunsOut}
+                    shouldClockFreeze={!!answerData.answer.length}
+                />
             </S.Stats>
             <S.Content>
                 <S.QuestionCounter>
                     question {questionNumber}/4
                 </S.QuestionCounter>
 
-                {!isClockTimeUp &&
-                    !answerData.answer.length &&
-                    !!questionData.question.length && (
-                        <CurrentQuestion
-                            questionNumber={questionNumber}
-                            questionData={questionData}
-                            onAnswerSubmit={handleAnswerSubmit}
-                        />
-                    )}
+                {!isClockTimeUp && !answerData.answer.length && (
+                    <CurrentQuestion
+                        questionNumber={questionNumber}
+                        questionData={questionData}
+                        onAnswerSubmit={handleAnswerSubmit}
+                    />
+                )}
 
                 {!isClockTimeUp && !!answerData.answer.length && (
                     <AnswerContainer
                         answerData={answerData}
+                        questionData={questionData}
+                        isLoggedIn={isUserLoggedIn}
                         onNextQuestionClick={handleNextQuestionClick}
                     />
                 )}
