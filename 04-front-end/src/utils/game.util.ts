@@ -4,9 +4,10 @@ import {
     QuestionResponse,
     Question,
     Answer,
-    AnswerResponse,
+    AnswerValidationResponse,
     AnswerExplanationResponse,
     AnswerExplanation,
+    AnswerResponse,
 } from '../pages/Game/Game.type';
 
 export const getRandomQuestionByCategoryId = (
@@ -24,7 +25,7 @@ export const getTimerValueForQuestion = (
 export const checkIfAnswerIsCorrect = (
     questionId: number,
     answer: string
-): Promise<AnswerResponse> => {
+): Promise<AnswerValidationResponse> => {
     return api('post', '/answer/validation', { questionId, answer }, false);
 };
 
@@ -32,6 +33,12 @@ export const getAnswerExplanation = (
     questionId: number
 ): Promise<AnswerExplanationResponse> => {
     return api('get', `/answer-explanation/${questionId}`, false, true);
+};
+
+export const getAnswersByQuestionId = (
+    questionId: number
+): Promise<AnswerResponse> => {
+    return api('get', `/question/answer/${questionId}`, false, false);
 };
 
 export const editAnswerExplanation = (
@@ -103,5 +110,5 @@ export const calculateScoreForQuestion = (
         return answer.length;
     }
 
-    return 0;
+    return isAnswerCorrect ? 10 : 0;
 };

@@ -68,7 +68,11 @@ class AnswerController extends BaseController {
         }
 
         if (data instanceof Array) {
-            res.send(data);
+            res.send(
+                data.map((el: AnswerModel) => ({
+                    answer: el.answer,
+                }))
+            );
             return;
         }
 
