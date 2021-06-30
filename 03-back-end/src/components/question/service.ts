@@ -96,8 +96,15 @@ class QuestionService extends BaseService<QuestionModel> {
                 .then(async () => {
                     if (await this.deleteAnswerByQuestionId(questionId)) return;
                     throw {
-                        errorCode: -1003,
+                        errorCode: -1004,
                         sqlMessage: 'Could not delete answer',
+                    };
+                })
+                .then(async() => {
+                    if (await this.deleteAnswerExplanationByQuestionId(questionId)) return;
+                    throw {
+                        errorCode: -1003,
+                        sqlMessage: 'Could not delete answer explanation',
                     };
                 })
                 .then(async () => {
@@ -150,6 +157,19 @@ class QuestionService extends BaseService<QuestionModel> {
     ): Promise<boolean> {
         try {
             await this.db.execute(`DELETE FROM answer WHERE question_id = ?;`, [
+                questionId,
+            ]);
+            return true;
+        } catch (e) {
+            return false;
+        }
+    }
+
+    private async deleteAnswerExplanationByQuestionId(
+        questionId: number
+    ): Promise<boolean> {
+        try {
+            await this.db.execute(`DELETE FROM answer_explanation WHERE question_id = ?;`, [
                 questionId,
             ]);
             return true;
