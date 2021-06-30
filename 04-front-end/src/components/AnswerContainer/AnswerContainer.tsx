@@ -74,7 +74,7 @@ const AnswerContainer = ({
                     </S.Title>
                     {!answerData.isCorrect && (
                         <span className="correct-answers">
-                            Correct answers: {explanation.answerExplanation}
+                            Correct answer: {explanation.answerExplanation}
                         </span>
                     )}
                     <Button type="primary" onClick={onNextQuestionClick}>

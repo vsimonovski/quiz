@@ -51,7 +51,6 @@ const Game = () => {
     useEffect(() => {
         setQuestionData(getInitialQuestionState);
         setAnswerData(getInitialAnswerState);
-        setIsClockTimeUp(false);
 
         Promise.all([
             getRandomQuestionByCategoryId(questionNumber),
@@ -62,18 +61,17 @@ const Game = () => {
             }
 
             if (tData.status === 'ok') {
-                console.log(tData.data.categoryTimer);
                 setClockTime(tData.data.categoryTimer);
+                setIsClockTimeUp(false);
             }
         });
     }, [questionNumber]);
 
     const handleClockRunsOut = useCallback(() => {
-        console.log('clock runs out');
         setIsClockTimeUp(true);
     }, []);
 
-    const handleAnswerSubmit = (answer: string) => {
+    const handleAnswerSubmit = useCallback((answer: string) => {
         setAnswerData(getInitialAnswerState);
 
         checkIfAnswerIsCorrect(questionData.questionId, answer).then((res) => {
@@ -89,7 +87,7 @@ const Game = () => {
                 );
             }
         });
-    };
+    }, [questionData]);
 
     const handleNextQuestionClick = () => {
         setQuestionNumber(questionNumber + 1);

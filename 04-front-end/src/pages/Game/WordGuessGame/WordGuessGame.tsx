@@ -5,17 +5,9 @@ import {
     compareOccurrences,
     countLetterOccurrences,
 } from '../../../utils/game.util';
-import { Question } from '../Game.type';
+import { GameProps } from '../Game.type';
 
-interface WordGuessGameProps {
-    questionData: Question;
-    onAnswerSubmit: (data: any) => void;
-}
-
-const WordGuessGame = ({
-    questionData,
-    onAnswerSubmit,
-}: WordGuessGameProps) => {
+const WordGuessGame = ({ questionData, onAnswerSubmit }: GameProps) => {
     const { question } = questionData;
 
     // initialize with empty space in order to always show help container in UI

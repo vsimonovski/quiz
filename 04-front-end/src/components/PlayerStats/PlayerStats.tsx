@@ -16,4 +16,4 @@ const PlayerStats = ({ username, score }: PlayerStatsProps) => {
     );
 };
 
-export default PlayerStats;
+export default React.memo(PlayerStats);
