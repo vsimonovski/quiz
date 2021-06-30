@@ -18,7 +18,7 @@ export const Container = styled.div`
     }
 
     .time {
-        width: 20px;
+        min-width: 20px;
         text-align: center;
     }
 `;

@@ -1,6 +1,7 @@
 import React from 'react';
 import WordGuessGame from '../../pages/Game/WordGuessGame/WordGuessGame';
 import { Question } from '../../pages/Game/Game.type';
+import CountryGuessGame from '../../pages/Game/CountryGuessGame/CountryGuessGame';
 
 interface CurrentQuestionProps {
     questionNumber: number;
@@ -21,8 +22,15 @@ const CurrentQuestion = ({
                     onAnswerSubmit={onAnswerSubmit}
                 />
             )}
+
+            {questionNumber === 2 && (
+                <CountryGuessGame
+                    questionData={questionData}
+                    onAnswerSubmit={onAnswerSubmit}
+                />
+            )}
         </div>
     );
 };
 
-export default CurrentQuestion;
+export default React.memo(CurrentQuestion);

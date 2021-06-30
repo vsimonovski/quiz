@@ -34,3 +34,8 @@ export interface AnswerExplanation {
     answerExplanation: string;
     questionId: number;
 }
+
+export interface GameProps {
+    questionData: Question;
+    onAnswerSubmit: (data: any) => void;
+}
