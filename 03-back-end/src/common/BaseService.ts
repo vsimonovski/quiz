@@ -47,10 +47,14 @@ export default abstract class BaseService<ReturnModel extends IModel> {
 
     protected async getByIdFromTable(
         tableName: string,
-        id: number
+        id: number,
+        isForeignKeyPrimaryKey?: boolean,
+        foreignKeyName?: string
     ): Promise<ReturnModel | IErrorResponse> {
         try {
-            const sql: string = `SELECT * FROM ${tableName} WHERE ${tableName}_id = ?;`;
+            const sql: string = `SELECT * FROM ${tableName} WHERE ${
+                isForeignKeyPrimaryKey ? foreignKeyName : tableName
+            }_id = ?;`;
             const [rows] = await this.db.execute(sql, [id]);
 
             this.checkData(rows, id);

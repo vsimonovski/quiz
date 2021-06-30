@@ -14,13 +14,17 @@ import CategoryRouter from './components/category/router';
 import UserService from './components/user/service';
 import UserRouter from './components/user/router';
 import AuthRouter from './components/auth/router';
+import AnswerExplanationService from './components/answerExplanation/service';
+import AnswerExplanationRouter from './components/answerExplanation/router';
 
 async function main() {
     const application: express.Application = express();
 
-    application.use(cors({
-        origin: 'http://localhost:3000'
-    }));
+    application.use(
+        cors({
+            origin: 'http://localhost:3000',
+        })
+    );
     application.use(express.json());
 
     const resources: IApplicationResources = {
@@ -42,6 +46,7 @@ async function main() {
         answerService: new AnswerService(resources),
         categoryService: new CategoryService(resources),
         userService: new UserService(resources),
+        answerExplanationService: new AnswerExplanationService(resources),
     };
 
     Router.setUpRoutes(application, resources, [
@@ -50,6 +55,7 @@ async function main() {
         new CategoryRouter(),
         new UserRouter(),
         new AuthRouter(),
+        new AnswerExplanationRouter(),
     ]);
 
     application.use((req: Request, res: Response) => {
