@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from './FlagGuessGame.style';
 import { GameProps } from '../Game.type';
 import { Spin } from 'antd';
-import useOfferedAnswer from "../../../utils/hooks/useOfferedAnswer";
+import useOfferedAnswer from '../../../utils/hooks/useOfferedAnswer';
 
 const FlagGuessGame = ({ questionData, onAnswerSubmit }: GameProps) => {
     const offeredAnswers = useOfferedAnswer(questionData.questionId);
@@ -23,6 +23,7 @@ const FlagGuessGame = ({ questionData, onAnswerSubmit }: GameProps) => {
                     return (
                         <img
                             src={`https://www.countryflags.io/${countryCode}/flat/64.png`}
+                            key={countryCode}
                             onClick={() => handleFlagClick(countryCode)}
                             alt="country flag"
                         />

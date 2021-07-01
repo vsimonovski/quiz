@@ -9,11 +9,13 @@ import {
     getInitialAnswerExplanationState,
 } from '../../utils/game.util';
 import EditAnswerExplanation from '../EditAnswerExplanation/EditAnswerExplanation';
+import {useHistory} from "react-router-dom";
 
 interface AnswerProps {
     answerData: Answer;
     questionData: Question;
     isLoggedIn: boolean;
+    questionNumber: number;
     onNextQuestionClick: () => void;
 }
 
@@ -22,11 +24,13 @@ const AnswerContainer = ({
     onNextQuestionClick,
     questionData,
     isLoggedIn,
+    questionNumber,
 }: AnswerProps) => {
     const [explanation, setExplanation] = useState(() =>
         getInitialAnswerExplanationState()
     );
     const [editMode, setEditMode] = useState(false);
+    const history = useHistory();
 
     useEffect(() => {
         if (!answerData.isCorrect) {
@@ -36,7 +40,7 @@ const AnswerContainer = ({
                 }
             });
         }
-    }, [answerData]);
+    }, [answerData, questionData]);
 
     const handleEditClick = () => {
         setEditMode(!editMode);
@@ -77,9 +81,12 @@ const AnswerContainer = ({
                             Correct answer: {explanation.answerExplanation}
                         </span>
                     )}
-                    <Button type="primary" onClick={onNextQuestionClick}>
-                        next question
-                    </Button>
+                    {questionNumber !== 4 && (
+                        <Button type="primary" onClick={onNextQuestionClick}>
+                            next question
+                        </Button>
+                    )}
+                    {questionNumber === 4 && <Button onClick={() => history.push('/')}>end game</Button>}
                 </Card>
             )}
             {editMode && (

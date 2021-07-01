@@ -11,7 +11,7 @@ function useOfferedAnswer(questionId: number) {
                 setOfferedAnswers(res.data);
             }
         });
-    });
+    }, [questionId]);
 
     return offeredAnswers;
 }
