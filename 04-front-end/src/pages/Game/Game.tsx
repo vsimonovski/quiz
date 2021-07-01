@@ -71,23 +71,28 @@ const Game = () => {
         setIsClockTimeUp(true);
     }, []);
 
-    const handleAnswerSubmit = useCallback((answer: string) => {
-        setAnswerData(getInitialAnswerState);
+    const handleAnswerSubmit = useCallback(
+        (answer: string) => {
+            setAnswerData(getInitialAnswerState);
 
-        checkIfAnswerIsCorrect(questionData.questionId, answer).then((res) => {
-            if (res.status === 'ok') {
-                setAnswerData({ answer: answer, isCorrect: res.data });
-                setScore(
-                    score +
-                        calculateScoreForQuestion(
-                            questionNumber,
-                            res.data,
-                            answer
-                        )
-                );
-            }
-        });
-    }, [questionData]);
+            checkIfAnswerIsCorrect(questionData.questionId, answer).then(
+                (res) => {
+                    if (res.status === 'ok') {
+                        setAnswerData({ answer: answer, isCorrect: res.data });
+                        setScore(
+                            score +
+                                calculateScoreForQuestion(
+                                    questionNumber,
+                                    res.data,
+                                    answer
+                                )
+                        );
+                    }
+                }
+            );
+        },
+        [questionData]
+    );
 
     const handleNextQuestionClick = () => {
         setQuestionNumber(questionNumber + 1);
@@ -125,6 +130,7 @@ const Game = () => {
                         answerData={answerData}
                         questionData={questionData}
                         isLoggedIn={isUserLoggedIn}
+                        questionNumber={questionNumber}
                         onNextQuestionClick={handleNextQuestionClick}
                     />
                 )}

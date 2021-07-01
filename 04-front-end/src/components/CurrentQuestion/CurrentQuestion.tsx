@@ -3,6 +3,7 @@ import WordGuessGame from '../../pages/Game/WordGuessGame/WordGuessGame';
 import { Question } from '../../pages/Game/Game.type';
 import CountryGuessGame from '../../pages/Game/CountryGuessGame/CountryGuessGame';
 import FlagGuessGame from '../../pages/Game/FlagGuessGame/FlagGuessGame';
+import MathGuessGame from '../../pages/Game/MathGuessGame/MathGuessGame';
 
 interface CurrentQuestionProps {
     questionNumber: number;
@@ -33,6 +34,13 @@ const CurrentQuestion = ({
 
             {questionNumber === 3 && (
                 <FlagGuessGame
+                    questionData={questionData}
+                    onAnswerSubmit={onAnswerSubmit}
+                />
+            )}
+
+            {questionNumber === 4 && (
+                <MathGuessGame
                     questionData={questionData}
                     onAnswerSubmit={onAnswerSubmit}
                 />
