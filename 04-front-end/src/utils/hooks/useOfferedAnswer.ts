@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getAnswersByQuestionId } from '../game.util';
-import { Answer } from '../../pages/Game/Game.type';
+import { Answer } from '../../containers/Game/Game.type';
 
 function useOfferedAnswer(questionId: number) {
     const [offeredAnswers, setOfferedAnswers] = useState<Answer[]>([]);

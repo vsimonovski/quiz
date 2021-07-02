@@ -9,8 +9,8 @@ import {
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { useHistory } from 'react-router-dom';
 import { setAuthToken, setRefreshToken } from '../../api/api';
-import * as S from '../../pages/Form/FormContainer/FormContainer.style';
-import { AuthFields } from '../../pages/Form/Form.type';
+import * as S from '../../containers/Form/FormContainer/FormContainer.style';
+import { AuthFields } from '../../containers/Form/Form.type';
 
 const Registration = () => {
     const [errorsOnRegister, setErrorsOnRegister] = useState('');

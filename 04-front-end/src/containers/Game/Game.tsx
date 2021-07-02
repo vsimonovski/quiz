@@ -13,8 +13,8 @@ import {
 import { getAuthToken } from '../../api/api';
 import PlayerStats from '../../components/PlayerStats/PlayerStats';
 import QuestionTimer from '../../components/QuestionTimer/QuestionTimer';
-import AnswerContainer from '../../components/AnswerContainer/AnswerContainer';
-import CurrentQuestion from '../../components/CurrentQuestion/CurrentQuestion';
+import AnswerContainer from './AnswerContainer/AnswerContainer';
+import QuestionContainer from './QuestionContainer/QuestionContainer';
 import * as S from './Game.style';
 import { Button, Spin } from 'antd';
 
@@ -118,7 +118,7 @@ const Game = () => {
                 </S.QuestionCounter>
 
                 {!isClockTimeUp && !answerData.answer.length && (
-                    <CurrentQuestion
+                    <QuestionContainer
                         questionNumber={questionNumber}
                         questionData={questionData}
                         onAnswerSubmit={handleAnswerSubmit}

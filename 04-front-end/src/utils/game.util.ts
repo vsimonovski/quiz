@@ -7,8 +7,8 @@ import {
     AnswerValidationResponse,
     AnswerExplanationResponse,
     AnswerExplanation,
-    AnswerResponse,
-} from '../pages/Game/Game.type';
+    AnswerResponse, CategoryResponse,
+} from '../containers/Game/Game.type';
 
 export const getRandomQuestionByCategoryId = (
     categoryId: number
@@ -40,6 +40,10 @@ export const getAnswersByQuestionId = (
 ): Promise<AnswerResponse> => {
     return api('get', `/question/answer/${questionId}`, false, false);
 };
+
+export const getAllCategories = (): Promise<CategoryResponse> => {
+    return api('get', '/category', false, true);
+}
 
 export const editAnswerExplanation = (
     questionId: number,
@@ -111,4 +115,17 @@ export const calculateScoreForQuestion = (
     }
 
     return isAnswerCorrect ? 10 : 0;
+};
+
+
+export const generateRandomLetters = (): string[] => {
+    const MAX_LETTERS: number = 10;
+    const alphabet: string = 'abcdefghijklmnopqrstuvwxyz';
+    const letterArr: string[] = [];
+
+    for (let i: number = 0; i < MAX_LETTERS; i++) {
+        letterArr.push(alphabet[Math.floor(Math.random() * alphabet.length)]);
+    }
+
+    return letterArr;
 };

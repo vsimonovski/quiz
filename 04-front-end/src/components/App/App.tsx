@@ -3,13 +3,13 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { GlobalStyle } from './App.style';
 import './App.style.ts';
 import './App.css';
-import Home from '../../pages/Home/Home';
-import Form from '../../pages/Form/Form';
+import Home from '../../containers/Home/Home';
+import Form from '../../containers/Form/Form';
 import Login from '../Login/Login';
 import Registration from '../Registration/Registration';
 
 // lazy loaded components
-const Game = lazy(() => import('../../pages/Game/Game'));
+const Game = lazy(() => import('../../containers/Game/Game'));
 
 const App = () => {
     return (
