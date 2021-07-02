@@ -1,5 +1,5 @@
 import React from 'react';
-import { GameProps } from '../Game.type';
+import { GameProps } from '../../containers/Game/Game.type';
 import * as S from './CountryGuessGame.style';
 import { Button, Col, Form, Input, Row } from 'antd';
 import { Rule } from 'antd/lib/form';

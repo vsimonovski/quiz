@@ -4,8 +4,8 @@ import { Input, Button, Form, Row, Col } from 'antd';
 import {
     compareOccurrences,
     countLetterOccurrences,
-} from '../../../utils/game.util';
-import { GameProps } from '../Game.type';
+} from '../../utils/game.util';
+import { GameProps } from '../../containers/Game/Game.type';
 
 const WordGuessGame = ({ questionData, onAnswerSubmit }: GameProps) => {
     const { question } = questionData;

@@ -1,8 +1,8 @@
 import React from 'react';
 import * as S from './FlagGuessGame.style';
-import { GameProps } from '../Game.type';
+import { GameProps } from '../../containers/Game/Game.type';
 import { Spin } from 'antd';
-import useOfferedAnswer from '../../../utils/hooks/useOfferedAnswer';
+import useOfferedAnswer from '../../utils/hooks/useOfferedAnswer';
 
 const FlagGuessGame = ({ questionData, onAnswerSubmit }: GameProps) => {
     const offeredAnswers = useOfferedAnswer(questionData.questionId);

@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Button, Card, Spin } from 'antd';
 import { CloseOutlined, FormOutlined } from '@ant-design/icons';
 import * as S from './AnswerContainer.style';
-import { Answer, Question } from '../../pages/Game/Game.type';
+import { Answer, Question } from '../Game.type';
 import {
     editAnswerExplanation,
     getAnswerExplanation,
     getInitialAnswerExplanationState,
-} from '../../utils/game.util';
-import EditAnswerExplanation from '../EditAnswerExplanation/EditAnswerExplanation';
+} from '../../../utils/game.util';
+import EditAnswerExplanation from '../../../components/EditAnswerExplanation/EditAnswerExplanation';
 import {useHistory} from "react-router-dom";
 
 interface AnswerProps {

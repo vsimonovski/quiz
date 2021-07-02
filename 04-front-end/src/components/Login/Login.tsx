@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Input, Button, Col, Row } from 'antd';
-import * as S from '../../pages/Form/FormContainer/FormContainer.style';
+import * as S from '../../containers/Form/FormContainer/FormContainer.style';
 import {
     attemptUserLogin,
     usernameRules,
@@ -9,7 +9,7 @@ import {
 import { setAuthToken, setRefreshToken } from '../../api/api';
 import { Link, useHistory } from 'react-router-dom';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { AuthFields } from '../../pages/Form/Form.type';
+import { AuthFields } from '../../containers/Form/Form.type';
 
 const Login = () => {
     const [errorsOnLogin, setErrorsOnLogin] = useState('');

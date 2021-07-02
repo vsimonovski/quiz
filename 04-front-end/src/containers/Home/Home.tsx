@@ -20,6 +20,10 @@ const Home = () => {
         }
     }
 
+    const handleAddQuestionClick = () => {
+        history.push('/add-question');
+    }
+
     return (
         <S.Container>
             <Menu onLoginStatusChange={handleLoginStatus} />
@@ -36,7 +40,7 @@ const Home = () => {
                     )}
                     <Button type="primary" onClick={handlePlayClick}>Play</Button>
                     {isUserLoggedIn && (
-                        <Button type="primary">Add Questions</Button>
+                        <Button type="primary" onClick={handleAddQuestionClick}>Add Questions</Button>
                     )}
                 </div>
             </S.Content>

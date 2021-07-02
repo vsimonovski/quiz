@@ -1,7 +1,7 @@
 import React from 'react';
-import { GameProps } from '../Game.type';
+import { GameProps } from '../../containers/Game/Game.type';
 import * as S from './MathGuessGame.style';
-import useOfferedAnswer from '../../../utils/hooks/useOfferedAnswer';
+import useOfferedAnswer from '../../utils/hooks/useOfferedAnswer';
 import { Spin } from 'antd';
 
 const MathGuessGame = ({ questionData, onAnswerSubmit }: GameProps) => {

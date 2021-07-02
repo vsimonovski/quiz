@@ -1,9 +1,9 @@
 import React from 'react';
-import WordGuessGame from '../../pages/Game/WordGuessGame/WordGuessGame';
-import { Question } from '../../pages/Game/Game.type';
-import CountryGuessGame from '../../pages/Game/CountryGuessGame/CountryGuessGame';
-import FlagGuessGame from '../../pages/Game/FlagGuessGame/FlagGuessGame';
-import MathGuessGame from '../../pages/Game/MathGuessGame/MathGuessGame';
+import WordGuessGame from '../../../components/WordGuessGame/WordGuessGame';
+import { Question } from '../Game.type';
+import CountryGuessGame from '../../../components/CountryGuessGame/CountryGuessGame';
+import FlagGuessGame from '../../../components/FlagGuessGame/FlagGuessGame';
+import MathGuessGame from '../../../components/MathGuessGame/MathGuessGame';
 
 interface CurrentQuestionProps {
     questionNumber: number;
@@ -11,7 +11,7 @@ interface CurrentQuestionProps {
     onAnswerSubmit: (answer: string) => void;
 }
 
-const CurrentQuestion = ({
+const QuestionContainer = ({
     questionNumber,
     questionData,
     onAnswerSubmit,
@@ -49,4 +49,4 @@ const CurrentQuestion = ({
     );
 };
 
-export default React.memo(CurrentQuestion);
+export default React.memo(QuestionContainer);
