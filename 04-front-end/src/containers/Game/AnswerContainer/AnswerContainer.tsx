@@ -9,7 +9,7 @@ import {
     getInitialAnswerExplanationState,
 } from '../../../utils/game.util';
 import EditAnswerExplanation from '../../../components/EditAnswerExplanation/EditAnswerExplanation';
-import {useHistory} from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 interface AnswerProps {
     answerData: Answer;
@@ -74,7 +74,8 @@ const AnswerContainer = ({
             {!editMode && (
                 <Card>
                     <S.Title isCorrect={answerData.isCorrect}>
-                        Your answer: {answerData.answer}
+                        Your answer is {answerData.isCorrect ? '' : 'in'}
+                        correct!
                     </S.Title>
                     {!answerData.isCorrect && (
                         <span className="correct-answers">
@@ -86,7 +87,11 @@ const AnswerContainer = ({
                             next question
                         </Button>
                     )}
-                    {questionNumber === 4 && <Button onClick={() => history.push('/')}>end game</Button>}
+                    {questionNumber === 4 && (
+                        <Button onClick={() => history.push('/')}>
+                            end game
+                        </Button>
+                    )}
                 </Card>
             )}
             {editMode && (

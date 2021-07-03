@@ -19,7 +19,9 @@ import * as S from './Game.style';
 import { Button, Spin } from 'antd';
 
 const Game = () => {
-    const [username, setUsername] = useState('');
+    const [username, setUsername] = useState(
+        () => sessionStorage.getItem('username') || ''
+    );
     const [questionNumber, setQuestionNumber] = useState(1);
     const [questionData, setQuestionData] = useState(() =>
         getInitialQuestionState()
@@ -32,20 +34,22 @@ const Game = () => {
     const history = useHistory();
 
     useEffect(() => {
-        setIsUserLoggedIn(false);
-        isLoggedIn()
-            .then((res) => {
-                if (res.status === 'ok') {
-                    const { identity } = jwt_decode<{ identity: string }>(
-                        getAuthToken()
-                    );
-                    setUsername(identity);
-                    setIsUserLoggedIn(true);
-                    return;
-                }
-                history.push('/login');
-            })
-            .catch((e) => console.log(e));
+        if(!username.length) {
+            setIsUserLoggedIn(false);
+            isLoggedIn()
+                .then((res) => {
+                    if (res.status === 'ok') {
+                        const {identity} = jwt_decode<{ identity: string }>(
+                            getAuthToken()
+                        );
+                        setUsername(identity);
+                        setIsUserLoggedIn(true);
+                        return;
+                    }
+                    history.push('/login');
+                })
+                .catch((e) => console.log(e));
+        }
     }, [history]);
 
     useEffect(() => {

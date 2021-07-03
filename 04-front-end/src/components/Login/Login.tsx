@@ -19,6 +19,7 @@ const Login = () => {
     const onFinish = ({ username, password }: AuthFields) => {
         setIsFormSubmitting(true);
         setErrorsOnLogin('');
+        sessionStorage.setItem('username', '');
         attemptUserLogin(username, password).then(({ data, status }) => {
             if (status === 'error') {
                 setErrorsOnLogin(data.error);
