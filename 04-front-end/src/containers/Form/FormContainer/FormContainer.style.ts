@@ -10,7 +10,7 @@ export const Container = styled.div`
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     width: 350px;
     height: 464px;
-    padding: 24px;
+    padding: 24px 0 24px 0;
     margin-top: 40px;
 
     .site-form-item-icon {
