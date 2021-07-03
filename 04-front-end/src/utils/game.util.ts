@@ -7,8 +7,10 @@ import {
     AnswerValidationResponse,
     AnswerExplanationResponse,
     AnswerExplanation,
-    AnswerResponse, CategoryResponse,
+    AnswerResponse,
+    CategoryResponse,
 } from '../containers/Game/Game.type';
+import { countries } from '../config/app.config';
 
 export const getRandomQuestionByCategoryId = (
     categoryId: number
@@ -43,7 +45,7 @@ export const getAnswersByQuestionId = (
 
 export const getAllCategories = (): Promise<CategoryResponse> => {
     return api('get', '/category', false, true);
-}
+};
 
 export const editAnswerExplanation = (
     questionId: number,
@@ -55,6 +57,113 @@ export const editAnswerExplanation = (
         { answerExplanation },
         true
     );
+};
+
+export const addQuestion = (
+    question: string,
+    categoryId: number
+): Promise<QuestionResponse> => {
+    return api('post', '/question', { question, categoryId }, true);
+};
+
+export const addAnswer = (
+    questionId: number,
+    answer: string,
+    isCorrect: number
+): Promise<ApiResponse> => {
+    return api('post', '/answer', { questionId, answer, isCorrect }, true);
+};
+
+export const addAnswerExplanation = (
+    answerExplanation: string,
+    questionId: number
+): Promise<ApiResponse> => {
+    return api('post', '/answer-explanation', {
+        answerExplanation,
+        questionId,
+    });
+};
+
+export const submitQuestionData = async (
+    categoryId: number,
+    question: string,
+    answers: string,
+    answerExplanation: string,
+    wrongAnswers: string[] | string
+) => {
+    try {
+        const addQuestionRes = await addQuestion(question, categoryId);
+
+        const questionId = addQuestionRes.data.questionId;
+        answers
+            .split(', ')
+            .map(
+                async (answer: string) => await addAnswer(questionId, answer, 1)
+            );
+
+        if (
+            wrongAnswers &&
+            wrongAnswers instanceof Array &&
+            wrongAnswers.length
+        ) {
+            wrongAnswers.map(
+                async (answer: string) => await addAnswer(questionId, answer, 0)
+            );
+        }
+
+        if (
+            wrongAnswers &&
+            !(wrongAnswers instanceof Array) &&
+            wrongAnswers.length
+        ) {
+            wrongAnswers
+                .split(', ')
+                .map(
+                    async (answer: string) =>
+                        await addAnswer(questionId, answer, 0)
+                );
+        }
+
+        await addAnswerExplanation(answerExplanation, questionId);
+    } catch (e) {
+        throw new Error(e);
+    }
+};
+
+export const getFormattedQuestionAndAnswers = (
+    categoryId: number,
+    question: string,
+    answers: string,
+    randomLetters: string
+): string[] => {
+    let formattedQuestion = question;
+    let formattedAnswers = answers;
+
+    switch (categoryId) {
+        case 1: {
+            formattedQuestion = randomLetters;
+            formattedAnswers = answers;
+            break;
+        }
+
+        case 2: {
+            formattedQuestion = question;
+            formattedAnswers =
+                countries.find((country) => country.code === question)?.name ||
+                '';
+            break;
+        }
+
+        case 3: {
+            formattedQuestion =
+                countries.find((country) => country.code === question)?.name ||
+                '';
+            formattedAnswers = question;
+            break;
+        }
+    }
+
+    return [formattedQuestion, formattedAnswers];
 };
 
 export const getInitialQuestionState = (): Question => {
@@ -117,8 +226,7 @@ export const calculateScoreForQuestion = (
     return isAnswerCorrect ? 10 : 0;
 };
 
-
-export const generateRandomLetters = (): string[] => {
+export const generateRandomLetters = (): string => {
     const MAX_LETTERS: number = 10;
     const alphabet: string = 'abcdefghijklmnopqrstuvwxyz';
     const letterArr: string[] = [];
@@ -127,5 +235,5 @@ export const generateRandomLetters = (): string[] => {
         letterArr.push(alphabet[Math.floor(Math.random() * alphabet.length)]);
     }
 
-    return letterArr;
+    return letterArr.join('');
 };

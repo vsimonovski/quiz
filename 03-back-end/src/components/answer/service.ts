@@ -130,7 +130,10 @@ class AnswerService extends BaseService<AnswerModel> {
         const data = await this.getAllByQuestionId(questionId);
         if (data instanceof Array) {
             const correctAnswer = data.find(({ answer, isCorrect }) => {
-                if (isCorrect && answer === submittedAnswer) {
+                if (
+                    isCorrect &&
+                    answer.toLowerCase() === submittedAnswer.toLowerCase()
+                ) {
                     return true;
                 }
             });

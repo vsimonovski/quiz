@@ -7,6 +7,7 @@ import Home from '../../containers/Home/Home';
 import Form from '../../containers/Form/Form';
 import Login from '../Login/Login';
 import Registration from '../Registration/Registration';
+import AddQuestionContainer from '../../containers/Game/AddQuestionContainer/AddQuestionContainer';
 
 // lazy loaded components
 const Game = lazy(() => import('../../containers/Game/Game'));
@@ -19,6 +20,11 @@ const App = () => {
                 <Switch>
                     <Route exact path="/" component={Home} />
                     <Route path="/game" component={Game} />
+                    <Route path="/add-question">
+                        <Form title="Add Question">
+                            <AddQuestionContainer />
+                        </Form>
+                    </Route>
                     <Route path="/login">
                         <Form title="Log in">
                             <Login />

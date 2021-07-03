@@ -13,7 +13,7 @@ const CountryGuessGame = ({ questionData, onAnswerSubmit }: GameProps) => {
     ];
 
     const handleFormSubmit = ({ answer }: { answer: string }) => {
-        onAnswerSubmit(answer.trim().toLowerCase());
+        onAnswerSubmit(answer.trim());
     };
 
     return (
