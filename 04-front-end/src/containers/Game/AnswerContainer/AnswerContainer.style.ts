@@ -5,7 +5,6 @@ interface TitleProps {
 }
 
 export const Container = styled.div`
-    min-width: 400px;
     position: relative;
 
     .ant-card-body {

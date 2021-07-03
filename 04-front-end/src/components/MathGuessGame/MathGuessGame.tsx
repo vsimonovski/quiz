@@ -14,9 +14,9 @@ const MathGuessGame = ({ questionData, onAnswerSubmit }: GameProps) => {
     if (!offeredAnswers.length) return <Spin />;
 
     return (
-        <S.Container>
+        <React.Fragment>
             <S.Title>Select correct answer for the math expression: </S.Title>
-            <S.Title>{questionData.question}= ?</S.Title>
+            <S.Title>{questionData.question} = ?</S.Title>
             <S.Content>
                 {offeredAnswers.map((offeredAnswer) => (
                     <S.OfferedAnswer
@@ -29,7 +29,7 @@ const MathGuessGame = ({ questionData, onAnswerSubmit }: GameProps) => {
                     </S.OfferedAnswer>
                 ))}
             </S.Content>
-        </S.Container>
+        </React.Fragment>
     );
 };
 

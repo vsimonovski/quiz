@@ -13,6 +13,10 @@ export const Title = styled.h1`
     font-family: ${styles.fonts.pressStart};
     font-weight: 800;
     margin: 0;
+
+    @media (max-width: 480px) {
+        font-size: 70px;
+    }
 `;
 
 export const Content = styled.div`
