@@ -3,10 +3,13 @@ import * as S from './Home.style';
 import { Button, Input } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import Menu from '../../components/Menu/Menu';
-import {useHistory} from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 const Home = () => {
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+    const [username, setUsername] = useState(
+        () => sessionStorage.getItem('username') || ''
+    );
     const history = useHistory();
 
     const handleLoginStatus = useCallback((isLoggedIn: boolean): void => {
@@ -14,15 +17,19 @@ const Home = () => {
     }, []);
 
     const handlePlayClick = () => {
-        // TODO add username only logic
-        if(isUserLoggedIn) {
+        if (isUserLoggedIn || username.length) {
+            sessionStorage.setItem('username', username);
             history.push('/game');
         }
-    }
+    };
 
     const handleAddQuestionClick = () => {
         history.push('/add-question');
-    }
+    };
+
+    const handleUsernameChange = (e: any) => {
+        setUsername(e.currentTarget.value);
+    };
 
     return (
         <S.Container>
@@ -36,11 +43,17 @@ const Home = () => {
                             prefix={
                                 <UserOutlined className="site-form-item-icon" />
                             }
+                            onChange={handleUsernameChange}
+                            defaultValue={username}
                         />
                     )}
-                    <Button type="primary" onClick={handlePlayClick}>Play</Button>
+                    <Button type="primary" onClick={handlePlayClick}>
+                        Play
+                    </Button>
                     {isUserLoggedIn && (
-                        <Button type="primary" onClick={handleAddQuestionClick}>Add Questions</Button>
+                        <Button type="primary" onClick={handleAddQuestionClick}>
+                            Add Questions
+                        </Button>
                     )}
                 </div>
             </S.Content>

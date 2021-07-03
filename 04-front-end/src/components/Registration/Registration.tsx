@@ -20,6 +20,7 @@ const Registration = () => {
     const onFinish = ({ username, password }: AuthFields) => {
         setIsFormSubmitting(true);
         setErrorsOnRegister('');
+        sessionStorage.setItem('username', '');
         attemptUserRegistration(username, password).then(({ data, status }) => {
             if (status === 'error') {
                 setErrorsOnRegister(data.error);
