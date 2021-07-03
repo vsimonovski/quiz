@@ -18,7 +18,7 @@ const FlagGuessGame = ({ questionData, onAnswerSubmit }: GameProps) => {
             <S.Title>
                 Guess flag for the country: {questionData.question}
             </S.Title>
-            <div>
+            <div className="flags">
                 {offeredAnswers.map(({ answer: countryCode }) => {
                     return (
                         <img
