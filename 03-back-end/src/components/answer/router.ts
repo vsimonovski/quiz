@@ -15,11 +15,13 @@ export default class AnswerRouter implements IRouter {
 
         application.get(
             '/answer',
+            AuthMiddleware.getVerifier(),
             answerController.getAll.bind(answerController)
         );
 
         application.get(
             '/answer/:id',
+            AuthMiddleware.getVerifier(),
             answerController.getById.bind(answerController)
         );
 

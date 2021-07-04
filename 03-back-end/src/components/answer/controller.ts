@@ -67,6 +67,14 @@ class AnswerController extends BaseController {
             });
         }
 
+        if (data instanceof Array && data.length === 0) {
+            res.status(404).send({
+                errorCode: 404,
+                errorMessage: `Question with id ${questionId} does not exist`,
+            });
+            return;
+        }
+
         if (data instanceof Array) {
             res.send(
                 data.map((el: AnswerModel) => ({

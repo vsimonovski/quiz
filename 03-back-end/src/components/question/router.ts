@@ -15,11 +15,13 @@ export default class QuestionRouter implements IRouter {
 
         application.get(
             '/question',
+            AuthMiddleware.getVerifier(),
             questionController.getAll.bind(questionController)
         );
 
         application.get(
             '/question/:id',
+            AuthMiddleware.getVerifier(),
             questionController.getById.bind(questionController)
         );
 
