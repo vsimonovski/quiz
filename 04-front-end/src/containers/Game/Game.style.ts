@@ -4,6 +4,12 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     height: 100%;
+
+    .no-more-time-title {
+        font-weight: bold;
+        color: #fff;
+        text-align: center;
+    }
 `;
 
 export const Content = styled.div`

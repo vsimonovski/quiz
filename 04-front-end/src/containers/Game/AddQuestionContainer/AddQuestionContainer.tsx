@@ -10,7 +10,7 @@ import {
 } from '../../../utils/game.util';
 import AddCountryGuessGame from '../../../components/AddCountryGuessGame/AddCountryGuessGame';
 import AddFlagGuessGame from '../../../components/AddFlagGuessGame/AddFlagGuessGame';
-import AddMathGuessGame from "../../../components/AddMathGuessGame/AddMathGuessGame";
+import AddMathGuessGame from '../../../components/AddMathGuessGame/AddMathGuessGame';
 
 const AddQuestionContainer = () => {
     const { Option } = Select;
@@ -41,7 +41,6 @@ const AddQuestionContainer = () => {
                 answers,
                 randomLetters
             );
-
 
         try {
             await submitQuestionData(

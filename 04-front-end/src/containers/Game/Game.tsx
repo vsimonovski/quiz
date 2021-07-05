@@ -141,7 +141,7 @@ const Game = () => {
 
                 {isClockTimeUp && (
                     <div>
-                        <div>Time is up</div>
+                        <h3 className="no-more-time-title">Time is up</h3>
                         <Button
                             type="primary"
                             onClick={handleNextQuestionClick}

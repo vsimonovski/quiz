@@ -31,6 +31,25 @@ const AddFlagGuessGame = () => {
                             required: true,
                             message: 'Please add incorrect answers',
                         },
+                        ({ getFieldValue }) => ({
+                            validator(_, value) {
+                                if (value.includes(getFieldValue('question'))) {
+                                    return Promise.reject(
+                                        new Error(
+                                            "Incorrect answer can't be same as question"
+                                        )
+                                    );
+                                }
+                                if (value.length !== 2) {
+                                    return Promise.reject(
+                                        new Error(
+                                            'Please provide two incorrect answers'
+                                        )
+                                    );
+                                }
+                                return Promise.resolve();
+                            },
+                        }),
                     ]}
                 >
                     <Select
