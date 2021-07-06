@@ -83,9 +83,56 @@ Korisniku su na raspolaganju četiri različite igre:
 
 #### 2.1 Spoljašnji interfejs
 
-Skica spoljašnjeg interfejsa dostupna je u datoteci pod nazivom [mock.png](../02-resources/mock.png) unutar 02-resources/ direktorijuma.
-Skica je generisana putem alata [excalidraw](https://excalidraw.com/), u pomenutom direktorijumu nalazi se i datoteka [mock.excalidraw](../02-resources/mock.excalidraw) koji se
-može učitati u excalidraw alat i time omogućiti bolji pregled skice interfejsa.
+Na slici 1a prikazan je izgled početnog ekrana, klikom na Log in dugme korisnik odlazi na stranicu za login, klikom na Register dugme korisnik odlazi na stranicu za register.
+Klikom na dugme play korisnik će započeti igru samo ukoliko je prethodno popunio podatke u polju username.
+
+![slika 1a](../02-resources/mock/1.png)
+
+Na slici 2a prikazan je izgled login ekrana, ukoliko korisnik klikne log in dugme pre nego što je popunio podatke, dobiće obaveštenje da su polja Username
+i Password obavezna. Ukoliko korisnik unese predugačke/prekratke parametre za korisničko ime i lozinku dobiće obaveštenje relevantno za dužinu parametara.
+Ukoliko su podaci ispravni, korisnik odlazi na početni ekran sa slike 1b. Ukoliko korisnik unese pogrešnu lozinku ili nepostojeće korisničko ime dobiće odgovarajuću poruku
+
+![slika 2a](../02-resources/mock/2.png)
+
+Na slici 2b prikazan je izgled register ekrana, validacija je slična kao i za login ekran s tim što ovde postoji dodatna validacija u pogledu
+poklapanja teksta lozinke. Klikom na Register dugme, sa uslovom da su podaci validni, korisnik odlazi na početni ekran sa slike 1b.
+
+![slika 2b](../02-resources/mock/3.png)
+
+Na slici 1b prikazan je izgled početnog ekrana za autorizovane korisnike. Klikom na dugme play korisnik odlazi na ekran za igru sa slike 3a, klikom na dugme Add Questions
+korisnik odlazi na formu za dodavanje novih pitanja sa slike 4a. Klikom na Log out dugme korisnik odlazi na login ekran sa slike 2a.
+
+![slika 1b](../02-resources/mock/4.png)
+
+Na slici 3a prikazan je izgled prvog pitanja u kvizu. Korisnik ima 60 sekundi da unese najduzu rec formiranu od ponudjenih karaktera. 
+U desnom uglu može videti štopericu koja odbrojava preostale sekunde, u levom uglu može videti svoje korisničko ime i ostvarene poene.
+Ukoliko korisnik unese karakter koji mu nije ponuđen ispisaće se odgovarajuća poruka i neće biti u mogućnost da pošalje odgovor. 
+Ukoliko vreme istekne, korisnik dobija odgovarajuću poruku i mogućnost da pređe na sledeće pitanje, ukoliko to nije poslednje pitanje. 
+U slučaju poslednjeg pitanja klikom na dugme korisnik završava kviz. Klikom na submit dugme, u slučaju tačnog odgovora korisnik odlazi na ekran sa slike 3b u suprotnom prikazuje mu se ekran sa slike 3c
+
+![slika 3a](../02-resources/mock/5.png)
+
+Na slici 3b prikazan je izgled povratne informacije u slučaju da je korisnik tačno odgovorio na pitanje, klikom na dugme next odlazi na sledeće pitanje u slučaju da to nije poslednje pitanje, ukoliko je upravo odgovoreno na poslednje pitanje korisnik klikom na dugme završava kviz.
+
+![slika 3b](../02-resources/mock/6.png)
+
+Na slici 3c prikazan je izgled povratne informacije u slucaju da je korisnik netacno odgovorio na pitanje. Korisnik moze videti objasnjenje odgovora, ukoliko je korisnik autentifikovan bice u mogucnosti da izmeni ovo objasnjenje klikom na edit ikonicu. Ponasanje nakon klika na dugme next opisano je u prethodnim scenarijima. 
+
+![slika 3c](../02-resources/mock/7.png)
+
+Na slici 3d prikazan je izgled pitanja koja sadrže više ponuđenih odgovora, razlika u odnosu na tip pitanja gde takmičar treba da unese odgovor je ta da korisnik klikom na izabrani odgovor direktno i odgovara na pitanje. Ponašanje aplikacije nakon odgovora ostaje nepromenjeno i objašnjeno je u prethodnim scenarijima.
+
+![slika 3d](../02-resources/mock/8.png)
+
+Na slici 4a prikazan je izgled forme za dodavanje novih pitanja. Korisnik prvo bira željenu kategoriju pitanja, na osnovu izabrane kategorije deo forme se dinamički menja i to na sledeći način:
+* Pogađanje slova, korisnik dobija 10 nasumično generisanih slova, klikom na ikonicu pored ima mogućnost da opet generiše novih 10 slova, u nastavku može uneti tačne odgovore ali se oni moraju sastojati od ponuđenih karaktera, u suprotnom dobija obaveštenje da to nije učinio.
+* Pogađanje imena države na osnovu zastave, korisnik bira zemlju iz liste zemalja, tačan odgovor je ekvivalentan izabranoj zemlji tako da nema potrebe za dodatnim poljem.
+* Pogađanje zastave na osnovu imena države, korisnik bira zemlju iz liste zemalja, korisnik zatim iz multiselect dropdown liste bira zemlje čije ce zastave predstavljati netačne odgovore, u ovoj listi se ne sme naći zemlja koja je izabrana kao pitanje i ne sme se naći više od dva netačna odgovora
+* Pogađanje vrednosti matematičkog izraza, korisnik unosi validan matematički izraz, korisnik unosi tacan odgovor, korisnik unosi netačne odgovore razdvojene zarezom
+
+Na kraju, korisnik mora uneti objašnjenje u slučaju netačnog odgovora, sva pitanja moraju zadovoljiti odgovarajuću validaciju da bi pitanje bilo dodato.
+
+![slika 4a](../02-resources/mock/9.png)
 
 #### 2.2 Funkcije
 
@@ -103,6 +150,87 @@ sadržaj koji ima svrhu da ga animira dok čeka na prikaz interfejsa.
 #### 2.5 Zahtevi baze podataka
 
 Model baze podataka sa tipovima podataka i obelezenim primarnim i stranim kljucevima dostupan je u datoteci pod nazivom [db-model.png](../02-resources/db-model.png)
+
+Konvencija imenovanja po tabelama se može videti u nastavku:
+```sql
+--
+-- Table structure for table `category`
+--
+
+DROP TABLE IF EXISTS `category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `category` (
+  `category_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `category_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category_timer` int(11) NOT NULL,
+  PRIMARY KEY (`category_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Table structure for table `question`
+--
+
+DROP TABLE IF EXISTS `question`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `question` (
+  `question_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `question` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`question_id`),
+  KEY `fk_question_category_id` (`category_id`),
+  CONSTRAINT `question_FK` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
+  `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password_hash` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `score` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `uq_user_username` (`username`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Table structure for table `answer`
+--
+
+DROP TABLE IF EXISTS `answer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `answer` (
+  `answer_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `answer` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `question_id` int(10) unsigned NOT NULL,
+  `is_correct` tinyint(1) unsigned NOT NULL,
+  PRIMARY KEY (`answer_id`),
+  KEY `fk_answer_question_id` (`question_id`),
+  CONSTRAINT `answer_FK` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Table structure for table `answer_explanation`
+--
+
+DROP TABLE IF EXISTS `answer_explanation`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `answer_explanation` (
+  `answer_explanation` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `question_id` int(10) unsigned NOT NULL,
+  UNIQUE KEY `fk_answer_explanation_question_id` (`question_id`) USING BTREE,
+  CONSTRAINT `answer_explanation_FK` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+```
 
 #### 2.6 Projektna ograničenja
 

@@ -44,7 +44,7 @@ export default class AuthMiddleware {
             next();
         } catch (e) {
             return res
-                .status(500)
+                .status(400)
                 .send(`Token validation error: ${e?.message}`);
         }
     }

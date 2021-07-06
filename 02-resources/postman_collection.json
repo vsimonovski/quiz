@@ -10,432 +10,6 @@
 			"name": "Question",
 			"item": [
 				{
-					"name": "GET all questions",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{API_USER_AUTH_TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{API_URL}}/question",
-							"host": [
-								"{{API_URL}}"
-							],
-							"path": [
-								"question"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Success",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{API_URL}}/question",
-									"host": [
-										"{{API_URL}}"
-									],
-									"path": [
-										"question"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "http://localhost:3000"
-								},
-								{
-									"key": "Vary",
-									"value": "Origin"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "512"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"200-j3CINBuhz9XYxAELguH6BNORmVY\""
-								},
-								{
-									"key": "Date",
-									"value": "Sat, 03 Jul 2021 22:12:35 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "[\n    {\n        \"questionId\": 1,\n        \"question\": \"uiyljqjpar\",\n        \"categoryId\": 1\n    },\n    {\n        \"questionId\": 2,\n        \"question\": \"RS\",\n        \"categoryId\": 2\n    },\n    {\n        \"questionId\": 3,\n        \"question\": \"Serbia\",\n        \"categoryId\": 3\n    },\n    {\n        \"questionId\": 4,\n        \"question\": \"80 * 2\",\n        \"categoryId\": 4\n    },\n    {\n        \"questionId\": 5,\n        \"question\": \"Malta\",\n        \"categoryId\": 3\n    },\n    {\n        \"questionId\": 6,\n        \"question\": \"Bhutan\",\n        \"categoryId\": 3\n    },\n    {\n        \"questionId\": 7,\n        \"question\": \"AL\",\n        \"categoryId\": 2\n    },\n    {\n        \"questionId\": 8,\n        \"question\": \"DZ\",\n        \"categoryId\": 2\n    },\n    {\n        \"questionId\": 9,\n        \"question\": \"Colombia\",\n        \"categoryId\": 3\n    },\n    {\n        \"questionId\": 10,\n        \"question\": \"5*9\",\n        \"categoryId\": 4\n    }\n]"
-						},
-						{
-							"name": "Auth token missing",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{API_URL}}/question",
-									"host": [
-										"{{API_URL}}"
-									],
-									"path": [
-										"question"
-									]
-								}
-							},
-							"status": "Unauthorized",
-							"code": 401,
-							"_postman_previewlanguage": "html",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "http://localhost:3000"
-								},
-								{
-									"key": "Vary",
-									"value": "Origin"
-								},
-								{
-									"key": "Content-Type",
-									"value": "text/html; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "24"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"18-qZi/oGrFTQ4B2t0nzhq3c0hh1j4\""
-								},
-								{
-									"key": "Date",
-									"value": "Sat, 03 Jul 2021 22:10:30 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "No auth token specified."
-						}
-					]
-				},
-				{
-					"name": "GET question by id",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{API_USER_AUTH_TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{API_URL}}/question/4",
-							"host": [
-								"{{API_URL}}"
-							],
-							"path": [
-								"question",
-								"4"
-							],
-							"query": [
-								{
-									"key": "",
-									"value": "",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Success",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{API_URL}}/question/1",
-									"host": [
-										"{{API_URL}}"
-									],
-									"path": [
-										"question",
-										"1"
-									],
-									"query": [
-										{
-											"key": "",
-											"value": "",
-											"disabled": true
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "http://localhost:3000"
-								},
-								{
-									"key": "Vary",
-									"value": "Origin"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "55"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"37-SMOG0aR+3PJgxC4lpn+1KMy782Y\""
-								},
-								{
-									"key": "Date",
-									"value": "Sat, 03 Jul 2021 22:13:34 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"questionId\": 1,\n    \"question\": \"uiyljqjpar\",\n    \"categoryId\": 1\n}"
-						},
-						{
-							"name": "Auth token missing",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{API_URL}}/question/1",
-									"host": [
-										"{{API_URL}}"
-									],
-									"path": [
-										"question",
-										"1"
-									],
-									"query": [
-										{
-											"key": "",
-											"value": "",
-											"disabled": true
-										}
-									]
-								}
-							},
-							"status": "Unauthorized",
-							"code": 401,
-							"_postman_previewlanguage": "html",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "http://localhost:3000"
-								},
-								{
-									"key": "Vary",
-									"value": "Origin"
-								},
-								{
-									"key": "Content-Type",
-									"value": "text/html; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "24"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"18-qZi/oGrFTQ4B2t0nzhq3c0hh1j4\""
-								},
-								{
-									"key": "Date",
-									"value": "Sat, 03 Jul 2021 22:13:08 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "No auth token specified."
-						},
-						{
-							"name": "Invalid question id",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{API_URL}}/question/0",
-									"host": [
-										"{{API_URL}}"
-									],
-									"path": [
-										"question",
-										"0"
-									],
-									"query": [
-										{
-											"key": "",
-											"value": "",
-											"disabled": true
-										}
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "plain",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "http://localhost:3000"
-								},
-								{
-									"key": "Vary",
-									"value": "Origin"
-								},
-								{
-									"key": "Content-Type",
-									"value": "text/plain; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "11"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"b-EFiDB1U+dmqzx9Mo2UjcZ1SJPO8\""
-								},
-								{
-									"key": "Date",
-									"value": "Sat, 03 Jul 2021 22:13:49 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "Bad Request"
-						},
-						{
-							"name": "Question with id not found",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{API_URL}}/question/55",
-									"host": [
-										"{{API_URL}}"
-									],
-									"path": [
-										"question",
-										"55"
-									],
-									"query": [
-										{
-											"key": "",
-											"value": "",
-											"disabled": true
-										}
-									]
-								}
-							},
-							"status": "Not Found",
-							"code": 404,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "http://localhost:3000"
-								},
-								{
-									"key": "Vary",
-									"value": "Origin"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "69"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"45-9KFhxHCUDPKXdHwUKC9REI4NLHc\""
-								},
-								{
-									"key": "Date",
-									"value": "Sat, 03 Jul 2021 22:14:07 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"errorCode\": 404,\n    \"errorMessage\": \"Question with id:55 does not exist\"\n}"
-						}
-					]
-				},
-				{
 					"name": "GET random question by category id",
 					"request": {
 						"method": "GET",
@@ -752,11 +326,619 @@
 							],
 							"cookie": [],
 							"body": "No auth token specified."
+						},
+						{
+							"name": "Invalid auth token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"question\": \"yskrdduyje\",\n    \"categoryId\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/question",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"question"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "37"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"25-/06hxqYvOzbjoa1PIPc9sUEn47g\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 06 Jul 2021 15:23:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Token validation error: invalid token"
 						}
 					]
 				},
 				{
-					"name": "PUT a new question",
+					"name": "GET all questions [NOT USED]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{API_USER_AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/question",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"question"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/question",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"question"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "512"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"200-j3CINBuhz9XYxAELguH6BNORmVY\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 03 Jul 2021 22:12:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"questionId\": 1,\n        \"question\": \"uiyljqjpar\",\n        \"categoryId\": 1\n    },\n    {\n        \"questionId\": 2,\n        \"question\": \"RS\",\n        \"categoryId\": 2\n    },\n    {\n        \"questionId\": 3,\n        \"question\": \"Serbia\",\n        \"categoryId\": 3\n    },\n    {\n        \"questionId\": 4,\n        \"question\": \"80 * 2\",\n        \"categoryId\": 4\n    },\n    {\n        \"questionId\": 5,\n        \"question\": \"Malta\",\n        \"categoryId\": 3\n    },\n    {\n        \"questionId\": 6,\n        \"question\": \"Bhutan\",\n        \"categoryId\": 3\n    },\n    {\n        \"questionId\": 7,\n        \"question\": \"AL\",\n        \"categoryId\": 2\n    },\n    {\n        \"questionId\": 8,\n        \"question\": \"DZ\",\n        \"categoryId\": 2\n    },\n    {\n        \"questionId\": 9,\n        \"question\": \"Colombia\",\n        \"categoryId\": 3\n    },\n    {\n        \"questionId\": 10,\n        \"question\": \"5*9\",\n        \"categoryId\": 4\n    }\n]"
+						},
+						{
+							"name": "Auth token missing",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/question",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"question"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "24"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"18-qZi/oGrFTQ4B2t0nzhq3c0hh1j4\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 03 Jul 2021 22:10:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "No auth token specified."
+						},
+						{
+							"name": "Invalid auth token",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/question",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"question"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "37"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"25-/06hxqYvOzbjoa1PIPc9sUEn47g\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 06 Jul 2021 15:20:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Token validation error: invalid token"
+						}
+					]
+				},
+				{
+					"name": "GET question by id [NOT USED]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{API_USER_AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/question/4",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"question",
+								"4"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/question/1",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"question",
+										"1"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "55"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"37-SMOG0aR+3PJgxC4lpn+1KMy782Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 03 Jul 2021 22:13:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"questionId\": 1,\n    \"question\": \"uiyljqjpar\",\n    \"categoryId\": 1\n}"
+						},
+						{
+							"name": "Auth token missing",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/question/1",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"question",
+										"1"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "24"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"18-qZi/oGrFTQ4B2t0nzhq3c0hh1j4\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 03 Jul 2021 22:13:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "No auth token specified."
+						},
+						{
+							"name": "Invalid question id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/question/0",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"question",
+										"0"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "11"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b-EFiDB1U+dmqzx9Mo2UjcZ1SJPO8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 03 Jul 2021 22:13:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Bad Request"
+						},
+						{
+							"name": "Question with id not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/question/55",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"question",
+										"55"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "69"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"45-9KFhxHCUDPKXdHwUKC9REI4NLHc\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 03 Jul 2021 22:14:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": 404,\n    \"errorMessage\": \"Question with id:55 does not exist\"\n}"
+						},
+						{
+							"name": "Invalid auth token",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/question/4",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"question",
+										"4"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "37"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"25-/06hxqYvOzbjoa1PIPc9sUEn47g\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 06 Jul 2021 15:22:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Token validation error: invalid token"
+						}
+					]
+				},
+				{
+					"name": "PUT a new question [NOT USED]",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -1042,7 +1224,7 @@
 					]
 				},
 				{
-					"name": "DELETE a question",
+					"name": "DELETE a question [NOT USED]",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -1222,397 +1404,6 @@
 		{
 			"name": "Answer",
 			"item": [
-				{
-					"name": "GET all answers",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{API_USER_AUTH_TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{API_URL}}/answer",
-							"host": [
-								"{{API_URL}}"
-							],
-							"path": [
-								"answer"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Auth token missing",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{API_URL}}/answer",
-									"host": [
-										"{{API_URL}}"
-									],
-									"path": [
-										"answer"
-									]
-								}
-							},
-							"status": "Unauthorized",
-							"code": 401,
-							"_postman_previewlanguage": "html",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "http://localhost:3000"
-								},
-								{
-									"key": "Vary",
-									"value": "Origin"
-								},
-								{
-									"key": "Content-Type",
-									"value": "text/html; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "24"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"18-qZi/oGrFTQ4B2t0nzhq3c0hh1j4\""
-								},
-								{
-									"key": "Date",
-									"value": "Sun, 04 Jul 2021 08:31:18 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "No auth token specified."
-						},
-						{
-							"name": "Success",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{API_URL}}/answer",
-									"host": [
-										"{{API_URL}}"
-									],
-									"path": [
-										"answer"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "http://localhost:3000"
-								},
-								{
-									"key": "Vary",
-									"value": "Origin"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "1549"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"60d-OzqETpHrK0F40kt4QPG3mR+ahgs\""
-								},
-								{
-									"key": "Date",
-									"value": "Sun, 04 Jul 2021 08:31:47 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "[\n    {\n        \"answerId\": 1,\n        \"answer\": \"pair\",\n        \"questionId\": 1,\n        \"isCorrect\": 1\n    },\n    {\n        \"answerId\": 2,\n        \"answer\": \"liar\",\n        \"questionId\": 1,\n        \"isCorrect\": 1\n    },\n    {\n        \"answerId\": 3,\n        \"answer\": \"Serbia\",\n        \"questionId\": 2,\n        \"isCorrect\": 1\n    },\n    {\n        \"answerId\": 4,\n        \"answer\": \"RS\",\n        \"questionId\": 3,\n        \"isCorrect\": 1\n    },\n    {\n        \"answerId\": 5,\n        \"answer\": \"CZ\",\n        \"questionId\": 3,\n        \"isCorrect\": 0\n    },\n    {\n        \"answerId\": 6,\n        \"answer\": \"RU\",\n        \"questionId\": 3,\n        \"isCorrect\": 0\n    },\n    {\n        \"answerId\": 7,\n        \"answer\": \"160\",\n        \"questionId\": 4,\n        \"isCorrect\": 1\n    },\n    {\n        \"answerId\": 8,\n        \"answer\": \"166\",\n        \"questionId\": 4,\n        \"isCorrect\": 0\n    },\n    {\n        \"answerId\": 9,\n        \"answer\": \"22\",\n        \"questionId\": 4,\n        \"isCorrect\": 0\n    },\n    {\n        \"answerId\": 10,\n        \"answer\": \"40\",\n        \"questionId\": 4,\n        \"isCorrect\": 0\n    },\n    {\n        \"answerId\": 11,\n        \"answer\": \"3\",\n        \"questionId\": 4,\n        \"isCorrect\": 0\n    },\n    {\n        \"answerId\": 12,\n        \"answer\": \"DZ\",\n        \"questionId\": 5,\n        \"isCorrect\": 0\n    },\n    {\n        \"answerId\": 13,\n        \"answer\": \"MT\",\n        \"questionId\": 5,\n        \"isCorrect\": 1\n    },\n    {\n        \"answerId\": 14,\n        \"answer\": \"AL\",\n        \"questionId\": 5,\n        \"isCorrect\": 0\n    },\n    {\n        \"answerId\": 15,\n        \"answer\": \"BT\",\n        \"questionId\": 6,\n        \"isCorrect\": 1\n    },\n    {\n        \"answerId\": 16,\n        \"answer\": \"AI\",\n        \"questionId\": 6,\n        \"isCorrect\": 0\n    },\n    {\n        \"answerId\": 17,\n        \"answer\": \"DZ\",\n        \"questionId\": 6,\n        \"isCorrect\": 0\n    },\n    {\n        \"answerId\": 18,\n        \"answer\": \"Albania\",\n        \"questionId\": 7,\n        \"isCorrect\": 1\n    },\n    {\n        \"answerId\": 19,\n        \"answer\": \"Algeria\",\n        \"questionId\": 8,\n        \"isCorrect\": 1\n    },\n    {\n        \"answerId\": 20,\n        \"answer\": \"CO\",\n        \"questionId\": 9,\n        \"isCorrect\": 1\n    },\n    {\n        \"answerId\": 21,\n        \"answer\": \"SE\",\n        \"questionId\": 9,\n        \"isCorrect\": 0\n    },\n    {\n        \"answerId\": 22,\n        \"answer\": \"CA\",\n        \"questionId\": 9,\n        \"isCorrect\": 0\n    },\n    {\n        \"answerId\": 23,\n        \"answer\": \"45\",\n        \"questionId\": 10,\n        \"isCorrect\": 1\n    },\n    {\n        \"answerId\": 24,\n        \"answer\": \"25\",\n        \"questionId\": 10,\n        \"isCorrect\": 0\n    },\n    {\n        \"answerId\": 25,\n        \"answer\": \"50\",\n        \"questionId\": 10,\n        \"isCorrect\": 0\n    },\n    {\n        \"answerId\": 26,\n        \"answer\": \"40\",\n        \"questionId\": 10,\n        \"isCorrect\": 0\n    }\n]"
-						}
-					]
-				},
-				{
-					"name": "GET answer by id",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{API_USER_AUTH_TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{API_URL}}/answer/16",
-							"host": [
-								"{{API_URL}}"
-							],
-							"path": [
-								"answer",
-								"16"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Success",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{API_URL}}/answer/16",
-									"host": [
-										"{{API_URL}}"
-									],
-									"path": [
-										"answer",
-										"16"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "http://localhost:3000"
-								},
-								{
-									"key": "Vary",
-									"value": "Origin"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "58"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"3a-d3vBhnwMcNDghKo3UOIw+RDYYtc\""
-								},
-								{
-									"key": "Date",
-									"value": "Sun, 04 Jul 2021 08:33:28 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"answerId\": 16,\n    \"answer\": \"AI\",\n    \"questionId\": 6,\n    \"isCorrect\": 0\n}"
-						},
-						{
-							"name": "Auth token missing",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{API_URL}}/answer/16",
-									"host": [
-										"{{API_URL}}"
-									],
-									"path": [
-										"answer",
-										"16"
-									]
-								}
-							},
-							"status": "Unauthorized",
-							"code": 401,
-							"_postman_previewlanguage": "html",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "http://localhost:3000"
-								},
-								{
-									"key": "Vary",
-									"value": "Origin"
-								},
-								{
-									"key": "Content-Type",
-									"value": "text/html; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "24"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"18-qZi/oGrFTQ4B2t0nzhq3c0hh1j4\""
-								},
-								{
-									"key": "Date",
-									"value": "Sun, 04 Jul 2021 08:33:10 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "No auth token specified."
-						},
-						{
-							"name": "Invalid answer id",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{API_URL}}/answer/0",
-									"host": [
-										"{{API_URL}}"
-									],
-									"path": [
-										"answer",
-										"0"
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "plain",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "http://localhost:3000"
-								},
-								{
-									"key": "Vary",
-									"value": "Origin"
-								},
-								{
-									"key": "Content-Type",
-									"value": "text/plain; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "11"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"b-EFiDB1U+dmqzx9Mo2UjcZ1SJPO8\""
-								},
-								{
-									"key": "Date",
-									"value": "Sun, 04 Jul 2021 08:33:52 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "Bad Request"
-						},
-						{
-							"name": "Answer with id not found",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{API_URL}}/answer/45",
-									"host": [
-										"{{API_URL}}"
-									],
-									"path": [
-										"answer",
-										"45"
-									]
-								}
-							},
-							"status": "Not Found",
-							"code": 404,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "http://localhost:3000"
-								},
-								{
-									"key": "Vary",
-									"value": "Origin"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "67"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"43-cg6eMKN70M0zZj6PtF50FOXpgLY\""
-								},
-								{
-									"key": "Date",
-									"value": "Sun, 04 Jul 2021 08:34:18 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"errorCode\": 404,\n    \"errorMessage\": \"Answer with id:45 does not exist\"\n}"
-						}
-					]
-				},
 				{
 					"name": "GET answer by questionId",
 					"request": {
@@ -2218,6 +2009,70 @@
 							],
 							"cookie": [],
 							"body": "[\n    {\n        \"instancePath\": \"\",\n        \"schemaPath\": \"#/required\",\n        \"keyword\": \"required\",\n        \"params\": {\n            \"missingProperty\": \"questionId\"\n        },\n        \"message\": \"must have required property 'questionId'\"\n    }\n]"
+						},
+						{
+							"name": "Invalid auth token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"questionId\": 4,\n    \"answer\": \"3\",\n    \"isCorrect\": 0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/answer",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"answer"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "37"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"25-/06hxqYvOzbjoa1PIPc9sUEn47g\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 06 Jul 2021 15:27:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Token validation error: invalid token"
 						}
 					]
 				},
@@ -2445,7 +2300,453 @@
 					]
 				},
 				{
-					"name": "PUT a new answer",
+					"name": "GET all answers [NOT USED]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{API_USER_AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/answer",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"answer"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/answer",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"answer"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1549"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"60d-OzqETpHrK0F40kt4QPG3mR+ahgs\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Jul 2021 08:31:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"answerId\": 1,\n        \"answer\": \"pair\",\n        \"questionId\": 1,\n        \"isCorrect\": 1\n    },\n    {\n        \"answerId\": 2,\n        \"answer\": \"liar\",\n        \"questionId\": 1,\n        \"isCorrect\": 1\n    },\n    {\n        \"answerId\": 3,\n        \"answer\": \"Serbia\",\n        \"questionId\": 2,\n        \"isCorrect\": 1\n    },\n    {\n        \"answerId\": 4,\n        \"answer\": \"RS\",\n        \"questionId\": 3,\n        \"isCorrect\": 1\n    },\n    {\n        \"answerId\": 5,\n        \"answer\": \"CZ\",\n        \"questionId\": 3,\n        \"isCorrect\": 0\n    },\n    {\n        \"answerId\": 6,\n        \"answer\": \"RU\",\n        \"questionId\": 3,\n        \"isCorrect\": 0\n    },\n    {\n        \"answerId\": 7,\n        \"answer\": \"160\",\n        \"questionId\": 4,\n        \"isCorrect\": 1\n    },\n    {\n        \"answerId\": 8,\n        \"answer\": \"166\",\n        \"questionId\": 4,\n        \"isCorrect\": 0\n    },\n    {\n        \"answerId\": 9,\n        \"answer\": \"22\",\n        \"questionId\": 4,\n        \"isCorrect\": 0\n    },\n    {\n        \"answerId\": 10,\n        \"answer\": \"40\",\n        \"questionId\": 4,\n        \"isCorrect\": 0\n    },\n    {\n        \"answerId\": 11,\n        \"answer\": \"3\",\n        \"questionId\": 4,\n        \"isCorrect\": 0\n    },\n    {\n        \"answerId\": 12,\n        \"answer\": \"DZ\",\n        \"questionId\": 5,\n        \"isCorrect\": 0\n    },\n    {\n        \"answerId\": 13,\n        \"answer\": \"MT\",\n        \"questionId\": 5,\n        \"isCorrect\": 1\n    },\n    {\n        \"answerId\": 14,\n        \"answer\": \"AL\",\n        \"questionId\": 5,\n        \"isCorrect\": 0\n    },\n    {\n        \"answerId\": 15,\n        \"answer\": \"BT\",\n        \"questionId\": 6,\n        \"isCorrect\": 1\n    },\n    {\n        \"answerId\": 16,\n        \"answer\": \"AI\",\n        \"questionId\": 6,\n        \"isCorrect\": 0\n    },\n    {\n        \"answerId\": 17,\n        \"answer\": \"DZ\",\n        \"questionId\": 6,\n        \"isCorrect\": 0\n    },\n    {\n        \"answerId\": 18,\n        \"answer\": \"Albania\",\n        \"questionId\": 7,\n        \"isCorrect\": 1\n    },\n    {\n        \"answerId\": 19,\n        \"answer\": \"Algeria\",\n        \"questionId\": 8,\n        \"isCorrect\": 1\n    },\n    {\n        \"answerId\": 20,\n        \"answer\": \"CO\",\n        \"questionId\": 9,\n        \"isCorrect\": 1\n    },\n    {\n        \"answerId\": 21,\n        \"answer\": \"SE\",\n        \"questionId\": 9,\n        \"isCorrect\": 0\n    },\n    {\n        \"answerId\": 22,\n        \"answer\": \"CA\",\n        \"questionId\": 9,\n        \"isCorrect\": 0\n    },\n    {\n        \"answerId\": 23,\n        \"answer\": \"45\",\n        \"questionId\": 10,\n        \"isCorrect\": 1\n    },\n    {\n        \"answerId\": 24,\n        \"answer\": \"25\",\n        \"questionId\": 10,\n        \"isCorrect\": 0\n    },\n    {\n        \"answerId\": 25,\n        \"answer\": \"50\",\n        \"questionId\": 10,\n        \"isCorrect\": 0\n    },\n    {\n        \"answerId\": 26,\n        \"answer\": \"40\",\n        \"questionId\": 10,\n        \"isCorrect\": 0\n    }\n]"
+						},
+						{
+							"name": "Auth token missing",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/answer",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"answer"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "24"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"18-qZi/oGrFTQ4B2t0nzhq3c0hh1j4\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Jul 2021 08:31:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "No auth token specified."
+						},
+						{
+							"name": "Invalid auth token",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/answer",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"answer"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "37"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"25-/06hxqYvOzbjoa1PIPc9sUEn47g\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 06 Jul 2021 15:25:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Token validation error: invalid token"
+						}
+					]
+				},
+				{
+					"name": "GET answer by id [NOT USED]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{API_USER_AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/answer/16",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"answer",
+								"16"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/answer/16",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"answer",
+										"16"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "58"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3a-d3vBhnwMcNDghKo3UOIw+RDYYtc\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Jul 2021 08:33:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"answerId\": 16,\n    \"answer\": \"AI\",\n    \"questionId\": 6,\n    \"isCorrect\": 0\n}"
+						},
+						{
+							"name": "Auth token missing",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/answer/16",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"answer",
+										"16"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "24"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"18-qZi/oGrFTQ4B2t0nzhq3c0hh1j4\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Jul 2021 08:33:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "No auth token specified."
+						},
+						{
+							"name": "Invalid answer id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/answer/0",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"answer",
+										"0"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "11"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b-EFiDB1U+dmqzx9Mo2UjcZ1SJPO8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Jul 2021 08:33:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Bad Request"
+						},
+						{
+							"name": "Answer with id not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/answer/45",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"answer",
+										"45"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "67"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"43-cg6eMKN70M0zZj6PtF50FOXpgLY\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Jul 2021 08:34:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": 404,\n    \"errorMessage\": \"Answer with id:45 does not exist\"\n}"
+						}
+					]
+				},
+				{
+					"name": "PUT a new answer [NOT USED]",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -2666,7 +2967,7 @@
 					]
 				},
 				{
-					"name": "Delete an answer",
+					"name": "Delete an answer [NOT USED]",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -3325,75 +3626,6 @@
 			"name": "Category",
 			"item": [
 				{
-					"name": "GET all categories",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{API_URL}}/category",
-							"host": [
-								"{{API_URL}}"
-							],
-							"path": [
-								"category"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Success",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{API_URL}}/category",
-									"host": [
-										"{{API_URL}}"
-									],
-									"path": [
-										"category"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "260"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"104-fFUHxwAate5uGrgk9bIYOfFzs5s\""
-								},
-								{
-									"key": "Date",
-									"value": "Tue, 15 Jun 2021 12:21:03 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "[\n    {\n        \"categoryId\": 1,\n        \"categoryName\": \"WORD_GUESS\",\n        \"categoryTimer\": 60\n    },\n    {\n        \"categoryId\": 2,\n        \"categoryName\": \"COUNTRY_GUESS\",\n        \"categoryTimer\": 10\n    },\n    {\n        \"categoryId\": 3,\n        \"categoryName\": \"FLAG_GUESS\",\n        \"categoryTimer\": 10\n    },\n    {\n        \"categoryId\": 4,\n        \"categoryName\": \"MATH_GUESS\",\n        \"categoryTimer\": 30\n    }\n]"
-						}
-					]
-				},
-				{
 					"name": "GET category by id",
 					"request": {
 						"method": "GET",
@@ -3515,6 +3747,75 @@
 							"body": "{\n    \"errorCode\": 404,\n    \"errorMessage\": \"Category with id:5 does not exist\"\n}"
 						}
 					]
+				},
+				{
+					"name": "GET all categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/category",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"category"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/category",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "260"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"104-fFUHxwAate5uGrgk9bIYOfFzs5s\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 15 Jun 2021 12:21:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"categoryId\": 1,\n        \"categoryName\": \"WORD_GUESS\",\n        \"categoryTimer\": 60\n    },\n    {\n        \"categoryId\": 2,\n        \"categoryName\": \"COUNTRY_GUESS\",\n        \"categoryTimer\": 10\n    },\n    {\n        \"categoryId\": 3,\n        \"categoryName\": \"FLAG_GUESS\",\n        \"categoryTimer\": 10\n    },\n    {\n        \"categoryId\": 4,\n        \"categoryName\": \"MATH_GUESS\",\n        \"categoryTimer\": 30\n    }\n]"
+						}
+					]
 				}
 			]
 		},
@@ -3522,7 +3823,7 @@
 			"name": "User",
 			"item": [
 				{
-					"name": "GET all users",
+					"name": "GET all users [NOT USED]",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -3660,7 +3961,7 @@
 					]
 				},
 				{
-					"name": "GET user by id",
+					"name": "GET user by id [NOT USED]",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -3850,7 +4151,7 @@
 					]
 				},
 				{
-					"name": "POST a new user",
+					"name": "POST a new user [NOT USED]",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -4224,6 +4525,63 @@
 							],
 							"cookie": [],
 							"body": "No auth token specified."
+						},
+						{
+							"name": "Invalid auth token",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/auth/user/ok",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"user",
+										"ok"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "37"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"25-/06hxqYvOzbjoa1PIPc9sUEn47g\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 06 Jul 2021 15:32:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Token validation error: invalid token"
 						}
 					]
 				},
