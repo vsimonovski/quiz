@@ -12,7 +12,7 @@
 #### Database
 
 - Project requires MariaDB, therefore MariaDB needs to be available system wide
-- Import Quiz database from [dump-quiz-202107041413.sql](/02-resources/dump-quiz-202107041413.sql) file
+- Import Quiz database from [dump-quiz-202107041413.sql](/02-resources/dump-quiz-202107061939.sql) file
 
 #### BE
 
