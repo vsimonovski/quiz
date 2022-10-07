@@ -21,8 +21,8 @@ const FlagGuessGame = ({ questionData, onAnswerSubmit }: GameProps) => {
             <div className="flags">
                 {offeredAnswers.map(({ answer: countryCode }) => {
                     return (
-                        <img
-                            src={`https://www.countryflags.io/${countryCode}/flat/64.png`}
+                        <S.Image
+                            src={`https://countryflagsapi.com/png/${countryCode}`}
                             key={countryCode}
                             onClick={() => handleFlagClick(countryCode)}
                             alt="country flag"

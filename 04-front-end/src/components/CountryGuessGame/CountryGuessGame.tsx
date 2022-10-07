@@ -23,9 +23,9 @@ const CountryGuessGame = ({ questionData, onAnswerSubmit }: GameProps) => {
                 <Row justify="center">
                     <Col>
                         <Form.Item name="flag">
-                            <img
+                            <S.Image
                                 alt="country flag"
-                                src={`https://www.countryflags.io/${questionData.question}/flat/64.png`}
+                                src={`https://countryflagsapi.com/png/${questionData.question}`}
                             />
                         </Form.Item>
                     </Col>
