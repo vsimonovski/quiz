@@ -4,7 +4,7 @@ import { appConfiguration } from '../../config/app.config';
 
 const styles: StyleConfiguration = appConfiguration.styles;
 
-export const Menu = styled.div`
+export const Menu = styled.nav`
     display: flex;
     flex-direction: row;
     background: rgba(0, 0, 0, 0.2);

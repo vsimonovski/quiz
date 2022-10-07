@@ -16,6 +16,9 @@ export const appConfiguration: AppConfiguration = {
     api: {
         baseUrl: 'http://localhost:8080',
     },
+    localhost: {
+        baseUrl: 'http://localhost:3000',
+    },
 };
 
 export const countries = [
