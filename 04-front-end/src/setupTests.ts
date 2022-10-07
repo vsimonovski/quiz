@@ -14,6 +14,16 @@ global.matchMedia =
         };
     };
 
+// Override antd Form validator warnings in unit tests
+// https://github.com/ant-design/ant-design/issues/9412
+const filters = ['async-validator:'];
+const _warn = console.warn;
+console.warn = function (msg, ...args) {
+    filters.some((filter) => msg.includes(filter))
+        ? jest.fn()
+        : _warn.apply(console, [msg, ...args]);
+};
+
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
