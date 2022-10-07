@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import Login from './Login';
 import { server } from '../../mocks/server';
+import { appConfiguration } from '../../config/app.config';
 
 describe('Login View', () => {
     it('should display Log in view elements', () => {
@@ -85,14 +86,17 @@ describe('Login View', () => {
         const mockErrorMessage = `Username: ${mockUsername} does not exist`;
 
         server.use(
-            rest.post('http://localhost:8080/auth/login', (req, res, ctx) => {
-                return res(
-                    ctx.status(404),
-                    ctx.json({
-                        errorMessage: mockErrorMessage,
-                    })
-                );
-            })
+            rest.post(
+                `${appConfiguration.api.baseUrl}/auth/login`,
+                (req, res, ctx) => {
+                    return res(
+                        ctx.status(404),
+                        ctx.json({
+                            errorMessage: mockErrorMessage,
+                        })
+                    );
+                }
+            )
         );
 
         render(<Login />, { wrapper: BrowserRouter });
@@ -116,14 +120,17 @@ describe('Login View', () => {
         const mockErrorMessage = 'Invalid user password';
 
         server.use(
-            rest.post('http://localhost:8080/auth/login', (req, res, ctx) => {
-                return res(
-                    ctx.status(401),
-                    ctx.json({
-                        errorMessage: mockErrorMessage,
-                    })
-                );
-            })
+            rest.post(
+                `${appConfiguration.api.baseUrl}/auth/login`,
+                (req, res, ctx) => {
+                    return res(
+                        ctx.status(401),
+                        ctx.json({
+                            errorMessage: mockErrorMessage,
+                        })
+                    );
+                }
+            )
         );
 
         render(<Login />, { wrapper: BrowserRouter });
