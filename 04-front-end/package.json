@@ -25,6 +25,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "cypress:run": "cypress run",
+    "cypress:open": "cypress open --browser electron --e2e",
     "eject": "react-scripts eject",
     "test:coverage": "yarn test --coverage --watchAll=false"
   },
@@ -49,6 +51,7 @@
   "devDependencies": {
     "@types/react-router-dom": "^5.1.7",
     "@types/styled-components": "^5.1.10",
+    "cypress": "^10.9.0",
     "msw": "^0.47.4",
     "prettier": "^2.3.1"
   }
